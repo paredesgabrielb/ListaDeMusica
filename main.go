@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"os/exec"
 	"strconv"
 	"strings"
 )
@@ -18,8 +17,17 @@ type Cancion struct {
 	Genero   string
 }
 
+type Listado struct {
+	Id          int
+	Nombre      string
+	Descripcion string
+	Canciones   []Cancion
+}
+
 //Slice de canciones
 var canciones = []Cancion{}
+
+var listas = []Listado{}
 
 //Metodos de pantalla
 func imprimirCabecera() {
@@ -28,26 +36,44 @@ func imprimirCabecera() {
 	fmt.Println("************************************\n")
 }
 
-func imprimirMenu() {
-	fmt.Println("1- Listar Canciones.")
+func imprimirMenuPrincipal() {
+	fmt.Println("1- Ir al menú de Canciones.")
+	fmt.Println("2- Ir al menú de Listas.")
+	fmt.Println("3- Salir.")
+	fmt.Print("\nElija una opcion => ")
+}
+
+func imprimirMenuDeListas() {
+	fmt.Println("1- Ver Listas.")
+	fmt.Println("2- Crear Lista.")
+	fmt.Println("3- Añadir Cancion a Lista.")
+	fmt.Println("4- Eliminar Cancion de Lista.")
+	fmt.Println("5- Buscar por Id.")
+	fmt.Println("6- Eliminar Lista.")
+	fmt.Println("7- Volver al Menú Principal.")
+	fmt.Print("\nElija una opcion => ")
+}
+
+func imprimirMenuDeCanciones() {
+	fmt.Println("1- Ver Canciones.")
 	fmt.Println("2- Añadir Cancion.")
 	fmt.Println("3- Modificar Cancion.")
 	fmt.Println("4- Eliminar Cancion.")
 	fmt.Println("5- Buscar por Id.")
 	fmt.Println("6- Buscar por Artista.")
 	fmt.Println("7- Buscar por Genero.")
-	fmt.Println("8- Salir.")
+	fmt.Println("8- Volver al Menú Principal.")
 	fmt.Print("\nElija una opcion => ")
 }
 
 //helpers
 func limpiarPantalla() {
-	cmd := exec.Command("cmd", "/c", "clear")
-    cmd.Stdout = os.Stdout
-    cmd.Run()
-	//for i := 1; i < 10; i++ {
-	//	fmt.Printf("\n\n\n\n\n\n\n\n\n")
-	//}
+	//cmd := exec.Command("cmd", "/c", "cls")
+	//cmd.Stdout = os.Stdout
+	//cmd.Run()
+	for i := 1; i < 10; i++ {
+		fmt.Printf("\n\n\n\n\n\n\n\n\n")
+	}
 }
 
 func getInput(message string, reader bufio.Reader) string {
@@ -74,7 +100,28 @@ func imprimirCanciones(canciones []Cancion) {
 	} else {
 		fmt.Println("\nLista de canciones")
 		for _, cancion := range canciones {
-			fmt.Printf(strconv.Itoa(cancion.Id) + "- " + cancion.Nombre + " (" + cancion.Artista + ")\n")
+			fmt.Printf(strconv.Itoa(cancion.Id) + "- " + cancion.Nombre + ". By: " + cancion.Artista + "\n")
+		}
+	}
+}
+
+func imprimirListas(listas []Listado) {
+	if len(listas) == 0 {
+		fmt.Println("\nNo se encontraron listas.")
+	} else {
+		fmt.Println("\nListas de Reproducción")
+		for _, lista := range listas {
+			fmt.Printf(strconv.Itoa(lista.Id) + "- " + lista.Nombre + " (" + lista.Descripcion + ")\n")
+		}
+	}
+}
+
+func imprimirCancionesEnLista(canciones []Cancion) {
+	if len(canciones) == 0 {
+		fmt.Println("\nNo se encontraron listas.")
+	} else {
+		for _, cancion := range canciones {
+			fmt.Printf(strconv.Itoa(cancion.Id) + "- " + cancion.Nombre + ". By: " + cancion.Artista + "\n")
 		}
 	}
 }
@@ -84,11 +131,28 @@ func volverAlMenu() {
 	fmt.Println("\n--Presione ENTER para regresar el menu principal--\n")
 	reader.ReadString('\n')
 	limpiarPantalla()
-	iniciar()
 }
 
-func verificarId(id int) bool {
+func volverAlMenuCanciones() {
+	volverAlMenu()
+	menuCanciones()
+}
+
+func volverAlMenuListas() {
+	volverAlMenu()
+	menuListas()
+}
+
+func verificarIdCancion(id int) bool {
 	if id <= 0 || id > len(canciones) {
+		return false
+	} else {
+		return true
+	}
+}
+
+func verificarIdListas(id int) bool {
+	if id <= 0 || id > len(listas) {
 		return false
 	} else {
 		return true
@@ -98,6 +162,12 @@ func verificarId(id int) bool {
 func reorganizarIds() {
 	for i := range canciones {
 		canciones[i].Id = i + 1
+	}
+}
+
+func reorganizarIdsListas() {
+	for i := range listas {
+		listas[i].Id = i + 1
 	}
 }
 
@@ -112,10 +182,6 @@ func modificarCancion(id int) {
 	artista := getInput("Artista: ", *reader)
 	canciones[id].Nombre = nombre
 	canciones[id].Artista = artista
-}
-
-func eliminarCancion(id int) {
-	canciones = append(canciones[:id], canciones[id+1:]...)
 }
 
 func buscarCancionPorGenero(genero string) []Cancion {
@@ -146,9 +212,9 @@ func generarCancion() Cancion {
 	reader := bufio.NewReader(os.Stdin)
 	nombre := getInput("Nombre: ", *reader)
 	artista := getInput("Artista: ", *reader)
-	genero := getInput("Genero: ", *reader)
+	genero := getInput("Género: ", *reader)
 	var duracion int
-	fmt.Print("Duracion: ")
+	fmt.Print("Duración: ")
 	fmt.Scan(&duracion)
 	return Cancion{
 		len(canciones) + 1,
@@ -158,79 +224,208 @@ func generarCancion() Cancion {
 		genero}
 }
 
-func iniciar() {
+func generarLista() Listado {
+	reader := bufio.NewReader(os.Stdin)
+	nombre := getInput("Nombre: ", *reader)
+	descripcion := getInput("Descripción: ", *reader)
+	return Listado{
+		len(listas) + 1,
+		nombre,
+		descripcion,
+		[]Cancion{}}
+}
+
+func anadirLista(lista Listado) {
+	listas = append(listas, lista)
+}
+
+func eliminarLista(id int) {
+	listas = append(listas[:id], listas[id+1:]...)
+}
+
+func anadirCancionALista(id int, cancion Cancion) {
+	listas[id].Canciones = append(listas[id].Canciones, cancion)
+}
+
+func eliminarCancion(id int) {
+	canciones = append(canciones[:id], canciones[id+1:]...)
+}
+
+func eliminarCancionDeLista(id int, cancion Cancion) {
+	listas[id].Canciones = append(listas[id].Canciones[:cancion.Id], listas[id].Canciones[cancion.Id+1:]...)
+}
+
+func menuListas() {
 	var opcion int
 
 	limpiarPantalla()
 	imprimirCabecera()
-	imprimirMenu()
+	imprimirMenuDeListas()
+
+	fmt.Scan(&opcion)
+
+	switch opcion {
+	case 1:
+		imprimirListas(listas)
+		volverAlMenuListas()
+		break
+	case 2:
+		fmt.Println("\nDigite los detalles de la lista:")
+		anadirLista(generarLista())
+		fmt.Println("\nLista creada satisfactoriamente!")
+		volverAlMenuListas()
+		break
+	case 3:
+		var idCancion, idLista int
+		imprimirListas(listas)
+		fmt.Print("\nDigite el ID de la lista: ")
+		fmt.Scan(&idLista)
+		imprimirCanciones(canciones)
+		fmt.Print("\nDigite el ID de la cancion a agregar: ")
+		fmt.Scan(&idCancion)
+		if verificarIdCancion(idCancion) {
+			anadirCancionALista(idLista, canciones[idCancion-1])
+			fmt.Println("\nCancion anadida satisfactoriamente!")
+		} else {
+			fmt.Print("\nEl ID especificado no existe.")
+		}
+		volverAlMenuListas()
+		break
+	case 4:
+		//TODO
+		volverAlMenuListas()
+		break
+	case 5:
+		fmt.Print("\nDigite el ID de la lista a buscar: ")
+		var id int
+		fmt.Scan(&id)
+		if verificarIdListas(id) {
+			imprimirListas([]Listado{listas[id-1]})
+			imprimirCancionesEnLista(listas[id-1].Canciones)
+		} else {
+			fmt.Print("\nEl ID especificado no existe.")
+		}
+		volverAlMenuListas()
+		break
+	case 6:
+		imprimirListas(listas)
+		fmt.Print("\nDigite el ID de la lista a eliminar: ")
+		var id int
+		fmt.Scan(&id)
+		if verificarIdListas(id) {
+			eliminarLista(id - 1)
+			reorganizarIdsListas()
+			fmt.Println("\nLista eliminada satisfactoriamente!")
+		} else {
+			fmt.Print("\nEl ID especificado no existe.")
+		}
+		volverAlMenuListas()
+		break
+	case 7:
+		break
+	default:
+		volverAlMenuListas()
+	}
+}
+
+func menuCanciones() {
+	var opcion int
+
+	limpiarPantalla()
+	imprimirCabecera()
+	imprimirMenuDeCanciones()
 
 	fmt.Scan(&opcion)
 
 	switch opcion {
 	case 1:
 		imprimirCanciones(canciones)
-		volverAlMenu()
+		volverAlMenuCanciones()
 		break
 	case 2:
 		fmt.Println("\nDigite los detalles de la cancion:")
 		anadirCancion(generarCancion())
 		fmt.Println("\nCancion añadida satisfactoriamente!")
-		volverAlMenu()
+		volverAlMenuCanciones()
 		break
 	case 3:
 		imprimirCanciones(canciones)
 		fmt.Print("\nDigite el ID de la cancion a modificar: ")
 		var id int
 		fmt.Scan(&id)
-		if verificarId(id) {
+		if verificarIdCancion(id) {
 			modificarCancion(id - 1)
 			fmt.Println("\nCancion modificada satisfactoriamente!")
 		} else {
 			fmt.Print("\nEl ID especificado no existe.")
 		}
-		volverAlMenu()
+		volverAlMenuCanciones()
 		break
 	case 4:
 		imprimirCanciones(canciones)
 		fmt.Print("\nDigite el ID de la cancion a eliminar: ")
 		var id int
 		fmt.Scan(&id)
-		if verificarId(id) {
+		if verificarIdCancion(id) {
 			eliminarCancion(id - 1)
 			reorganizarIds()
 			fmt.Println("\nCancion eliminada satisfactoriamente!")
 		} else {
 			fmt.Print("\nEl ID especificado no existe.")
 		}
-		volverAlMenu()
+		volverAlMenuCanciones()
 		break
 	case 5:
 		fmt.Print("\nDigite el ID de la cancion a buscar: ")
 		var id int
 		fmt.Scan(&id)
-		if verificarId(id) {
+		if verificarIdCancion(id) {
 			imprimirCanciones([]Cancion{canciones[id-1]})
 		} else {
 			fmt.Print("\nEl ID especificado no existe.")
 		}
-		volverAlMenu()
+		volverAlMenuCanciones()
 		break
 	case 6:
 		fmt.Println("\nIngrese los criterios de busqueda.")
 		reader := bufio.NewReader(os.Stdin)
 		artista := getInput("Artista: ", *reader)
 		imprimirCanciones(buscarCancionPorArtista(artista))
-		volverAlMenu()
+		volverAlMenuCanciones()
 		break
 	case 7:
 		fmt.Println("\nIngrese los criterios de busqueda.")
 		reader := bufio.NewReader(os.Stdin)
 		genero := getInput("Genero: ", *reader)
 		imprimirCanciones(buscarCancionPorGenero(genero))
-		volverAlMenu()
+		volverAlMenuCanciones()
 		break
 	case 8:
+		break
+	default:
+		volverAlMenuCanciones()
+	}
+}
+
+func iniciar() {
+	var opcion int
+
+	limpiarPantalla()
+	imprimirCabecera()
+	imprimirMenuPrincipal()
+
+	fmt.Scan(&opcion)
+
+	switch opcion {
+	case 1:
+		menuCanciones()
+		iniciar()
+		break
+	case 2:
+		menuListas()
+		iniciar()
+		break
+	case 3:
 		break
 	default:
 		iniciar()
