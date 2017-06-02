@@ -5,11 +5,10 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"runtime"
 	"strconv"
 	"strings"
-	"runtime"
 )
-
 
 //helpers
 func LimpiarPantalla() {
@@ -17,14 +16,10 @@ func LimpiarPantalla() {
 		cmd := exec.Command("cmd", "/c", "cls")
 		cmd.Stdout = os.Stdout
 		cmd.Run()
-	} else if runtime.GOOS == "linux" {
+	} else {
 		cmd := exec.Command("clear") //Linux example, its tested
-        cmd.Stdout = os.Stdout
-        cmd.Run()
-	} else{
-		for i := 1; i < 10; i++ {
-			fmt.Printf("\n\n\n\n\n\n\n\n\n")
-		}
+		cmd.Stdout = os.Stdout
+		cmd.Run()
 	}
 }
 
@@ -60,9 +55,8 @@ func ImprimirCancionesByLista(id int) {
 	if len(Listas[id].Canciones) == 0 {
 		fmt.Println("\nNo se encontraron canciones.")
 	} else {
-		fmt.Println("\nLista de canciones")
 		for _, cancion := range Listas[id].Canciones {
-			fmt.Printf(strconv.Itoa(cancion.Id) + "- " + cancion.Nombre + ". By: " + cancion.Artista + "\n")
+			fmt.Printf("\t" + strconv.Itoa(cancion.Id) + "- " + cancion.Nombre + ". By: " + cancion.Artista + "\n")
 		}
 	}
 }
@@ -88,14 +82,13 @@ func ImprimirCancionesEnLista(canciones []Cancion) {
 	}
 }
 
-func PauseConsole(){
+func PauseConsole() {
 	//con \n no funciona en windows
 	if runtime.GOOS == "windows" {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Println("\n--Presione ENTER para regresar el menu principal--\n")
 		reader.ReadString('\r')
-	} else 
-	{
+	} else {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Println("\n--Presione ENTER para regresar el menu principal--\n")
 		reader.ReadString('\n')
@@ -108,18 +101,28 @@ func VolverAlMenu() {
 
 func VolverAlMenuCanciones() {
 	VolverAlMenu()
+	ImprimirCabecera()
 	ImprimirMenuDeCanciones()
 	MenuCanciones()
 }
 
 func VolverAlMenuListas() {
 	VolverAlMenu()
+	ImprimirCabecera()
 	ImprimirMenuDeListas()
 	MenuListas()
 }
 
 func VerificarIdCancion(id int) bool {
 	if id <= 0 || id > len(Canciones) {
+		return false
+	} else {
+		return true
+	}
+}
+
+func VerificarIdCancionesEnLista(idLista, idCancion int) bool {
+	if idCancion <= 0 || idCancion > len(Listas[idLista-1].Canciones) {
 		return false
 	} else {
 		return true
@@ -143,6 +146,12 @@ func ReorganizarIds() {
 func ReorganizarIdsListas() {
 	for i := range Listas {
 		Listas[i].Id = i + 1
+	}
+}
+
+func ReorganizarIdsCancionesEnLista(id int) {
+	for i := range Listas[id].Canciones {
+		Listas[id].Canciones[i].Id = i + 1
 	}
 }
 
@@ -171,37 +180,38 @@ func MenuListas() {
 		fmt.Print("\nDigite el ID de la cancion a agregar: ")
 		fmt.Scan(&idCancion)
 		if VerificarIdCancion(idCancion) {
-			AnadirCancionALista(idLista, Canciones[idCancion-1])
-			fmt.Println("\nCancion anadida satisfactoriamente!")
+			AnadirCancionALista(idLista-1, Canciones[idCancion-1])
+			fmt.Println("\nCancion añadida satisfactoriamente!")
 		} else {
 			fmt.Print("\nEl ID especificado no existe.")
 		}
 		VolverAlMenuListas()
 		break
 	case 4:
-		//TODO : Done
 		var idCancion, idLista int
 		ImprimirListas(Listas)
 		fmt.Print("\nDigite el ID de la lista: ")
 		fmt.Scan(&idLista)
-		ImprimirCancionesByLista(idLista)
+		ImprimirCancionesByLista(idLista - 1)
 		fmt.Print("\nDigite el ID de la cancion a eliminar: ")
 		fmt.Scan(&idCancion)
-		if VerificarIdCancion(idCancion) {
-			EliminarCancionDeLista(idLista, Canciones[idCancion-1])
+		if VerificarIdCancionesEnLista(idLista, idCancion) {
+			EliminarCancionDeLista(idLista-1, idCancion-1)
 			fmt.Println("\nCancion eliminada satisfactoriamente!")
+			ReorganizarIdsCancionesEnLista(idLista - 1)
 		} else {
 			fmt.Print("\nEl ID especificado no existe.")
 		}
 		VolverAlMenuListas()
 		break
 	case 5:
+		ImprimirListas(Listas)
 		fmt.Print("\nDigite el ID de la lista a buscar: ")
 		var id int
 		fmt.Scan(&id)
 		if VerificarIdListas(id) {
 			ImprimirListas([]Listado{Listas[id-1]})
-			ImprimirCancionesEnLista(Listas[id-1].Canciones)
+			ImprimirCancionesByLista(id - 1)
 		} else {
 			fmt.Print("\nEl ID especificado no existe.")
 		}

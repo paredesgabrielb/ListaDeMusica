@@ -76,7 +76,6 @@ func EliminarLista(id int) {
 }
 
 func AnadirCancionALista(id int, cancion Cancion) {
-	fmt.Print("***11**")
 	cancion.Id = len(Listas[id].Canciones) + 1
 	Listas[id].Canciones = append(Listas[id].Canciones, cancion)
 }
@@ -85,8 +84,6 @@ func EliminarCancion(id int) {
 	Canciones = append(Canciones[:id], Canciones[id+1:]...)
 }
 
-func EliminarCancionDeLista(id int, cancion Cancion) {
-	Listas[id].Canciones = append(Listas[id].Canciones[:cancion.Id], Listas[id].Canciones[cancion.Id+1:]...)
+func EliminarCancionDeLista(id, idCancion int) {
+	Listas[id].Canciones = append(Listas[id].Canciones[:idCancion], Listas[id].Canciones[idCancion+1:]...)
 }
-
-
