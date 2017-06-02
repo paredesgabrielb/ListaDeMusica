@@ -244,6 +244,7 @@ func eliminarLista(id int) {
 }
 
 func anadirCancionALista(id int, cancion Cancion) {
+	cancion.Id = len(listas[id].Canciones) + 1
 	listas[id].Canciones = append(listas[id].Canciones, cancion)
 }
 
