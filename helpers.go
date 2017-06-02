@@ -103,7 +103,7 @@ func PauseConsole(){
 }
 func VolverAlMenu() {
 	PauseConsole()
-	//LimpiarPantalla()
+	LimpiarPantalla()
 }
 
 func VolverAlMenuCanciones() {
