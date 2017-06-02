@@ -4,18 +4,27 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"os/exec"
 	"strconv"
 	"strings"
+	"runtime"
 )
 
 
 //helpers
 func LimpiarPantalla() {
-	//cmd := exec.Command("cmd", "/c", "cls")
-	//cmd.Stdout = os.Stdout
-	//cmd.Run()
-	for i := 1; i < 10; i++ {
-		fmt.Printf("\n\n\n\n\n\n\n\n\n")
+	if runtime.GOOS == "windows" {
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	} else if runtime.GOOS == "linux" {
+		cmd := exec.Command("clear") //Linux example, its tested
+        cmd.Stdout = os.Stdout
+        cmd.Run()
+	} else{
+		for i := 1; i < 10; i++ {
+			fmt.Printf("\n\n\n\n\n\n\n\n\n")
+		}
 	}
 }
 
@@ -47,6 +56,16 @@ func ImprimirCanciones(canciones []Cancion) {
 		}
 	}
 }
+func ImprimirCancionesByLista(id int) {
+	if len(Listas[id].Canciones) == 0 {
+		fmt.Println("\nNo se encontraron canciones.")
+	} else {
+		fmt.Println("\nLista de canciones")
+		for _, cancion := range Listas[id].Canciones {
+			fmt.Printf(strconv.Itoa(cancion.Id) + "- " + cancion.Nombre + ". By: " + cancion.Artista + "\n")
+		}
+	}
+}
 
 func ImprimirListas(listas []Listado) {
 	if len(listas) == 0 {
@@ -69,20 +88,33 @@ func ImprimirCancionesEnLista(canciones []Cancion) {
 	}
 }
 
+func PauseConsole(){
+	//con \n no funciona en windows
+	if runtime.GOOS == "windows" {
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Println("\n--Presione ENTER para regresar el menu principal--\n")
+		reader.ReadString('\r')
+	} else 
+	{
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Println("\n--Presione ENTER para regresar el menu principal--\n")
+		reader.ReadString('\n')
+	}
+}
 func VolverAlMenu() {
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("\n--Presione ENTER para regresar el menu principal--\n")
-	reader.ReadString('\n')
-	LimpiarPantalla()
+	PauseConsole()
+	//LimpiarPantalla()
 }
 
 func VolverAlMenuCanciones() {
 	VolverAlMenu()
+	ImprimirMenuDeCanciones()
 	MenuCanciones()
 }
 
 func VolverAlMenuListas() {
 	VolverAlMenu()
+	ImprimirMenuDeListas()
 	MenuListas()
 }
 
@@ -117,10 +149,6 @@ func ReorganizarIdsListas() {
 func MenuListas() {
 	var opcion int
 
-	LimpiarPantalla()
-	ImprimirCabecera()
-	ImprimirMenuDeListas()
-
 	fmt.Scan(&opcion)
 
 	switch opcion {
@@ -151,7 +179,20 @@ func MenuListas() {
 		VolverAlMenuListas()
 		break
 	case 4:
-		//TODO
+		//TODO : Done
+		var idCancion, idLista int
+		ImprimirListas(Listas)
+		fmt.Print("\nDigite el ID de la lista: ")
+		fmt.Scan(&idLista)
+		ImprimirCancionesByLista(idLista)
+		fmt.Print("\nDigite el ID de la cancion a eliminar: ")
+		fmt.Scan(&idCancion)
+		if VerificarIdCancion(idCancion) {
+			EliminarCancionDeLista(idLista, Canciones[idCancion-1])
+			fmt.Println("\nCancion eliminada satisfactoriamente!")
+		} else {
+			fmt.Print("\nEl ID especificado no existe.")
+		}
 		VolverAlMenuListas()
 		break
 	case 5:
@@ -189,10 +230,6 @@ func MenuListas() {
 
 func MenuCanciones() {
 	var opcion int
-
-	LimpiarPantalla()
-	ImprimirCabecera()
-	ImprimirMenuDeCanciones()
 
 	fmt.Scan(&opcion)
 

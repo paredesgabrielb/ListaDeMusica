@@ -76,6 +76,7 @@ func EliminarLista(id int) {
 }
 
 func AnadirCancionALista(id int, cancion Cancion) {
+	fmt.Print("***11**")
 	cancion.Id = len(Listas[id].Canciones) + 1
 	Listas[id].Canciones = append(Listas[id].Canciones, cancion)
 }
