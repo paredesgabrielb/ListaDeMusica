@@ -6,7 +6,6 @@ import (
 
 func iniciar() {
 	var opcion int
-
 	ImprimirCabecera()
 	ImprimirMenuPrincipal()
 
@@ -31,6 +30,7 @@ func iniciar() {
 		iniciar()
 		break
 	case 3: // 3- Salir.
+		saveDataToFile()
 		break
 	default:
 		LimpiarPantalla()
@@ -39,5 +39,7 @@ func iniciar() {
 }
 
 func main() {
+	InicializarCanciones()
+	InicializarListas()
 	iniciar()
 }

@@ -5,9 +5,60 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"strconv"
 )
 
 //funciones principales
+
+//Inicializa data en las canciones
+func InicializarCanciones(){
+	fileCanciones, err := readFileLines("files/canciones.txt")
+	check(err)
+	var cancionDetail []string
+	if(len(fileCanciones) > 0){
+		for _,line := range fileCanciones {
+			cancionDetail = strings.Split(line, "|")
+			id, err := strconv.Atoi(cancionDetail[0])
+			check(err)
+			duracion, err := strconv.Atoi(cancionDetail[3])
+			Canciones = append(Canciones, Cancion{
+				id,
+				cancionDetail[1],
+				cancionDetail[2],
+				duracion,
+				cancionDetail[4]})
+		}
+
+	}
+}
+
+//Inicializa data en la lista
+func InicializarListas(){
+	fileListas, err := readFileLines("files/listas.txt")
+	check(err)
+	var listaDetail []string
+	if(len(fileListas) > 0){
+		for _,line := range fileListas{
+			listaDetail = strings.Split(line,"|")
+			id, err := strconv.Atoi(listaDetail[0])
+			check(err)
+			duracion, err := strconv.Atoi(listaDetail[3])
+			Listas = append(Listas, Listado{
+				id,
+				listaDetail[1],
+				listaDetail[2],
+				duracion,
+				listaDetail[4]})
+		}
+	}
+}
+
+//graba los archivos
+func saveDataToFile(){
+	writeFileCanciones(Canciones,"files/canciones.txt")
+	writeFileListas(Listas,"files/listas.txt")
+}
+
 func AnadirCancion(cancion Cancion) {
 	Canciones = append(Canciones, cancion)
 }

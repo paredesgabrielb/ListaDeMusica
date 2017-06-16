@@ -3,8 +3,6 @@ package main
 import(
 	"bufio"
 	"fmt"
-	"io"
-	"io/ioutil"
 	"os"
 	"strconv"
 )
@@ -15,7 +13,7 @@ func check(e error){
 	}
 }
 
-//Recibe la direccion del archivo a leer, retorna un slice de string con lo leido
+//Recibe la direccion del archivo a leer, retorna un arreglo de string con lo leido
 func readFileLines(path string)([]string, error){
 	file, err := os.Open(path)
 	check(err)
@@ -29,15 +27,31 @@ func readFileLines(path string)([]string, error){
 	return lines,scanner.Err()
 }
 
-//Recibe un slice de strings y crea un archivo y escribe en el la data
-//TIENE BUG Y NO SEPARA LAS LINEAS, NO ACEPTA EL ESCAPE \N
-func writeFile(data []string){
-	file, err := os.Create("canciones.txt")
+//Recibe un arreglo de canciones, abre la direccion especificada y escribe en el archivo la data
+func writeFileCanciones(canciones []Cancion, path string){
+	file, err := os.Create(path)
 	check(err)
 	defer file.Close()
-	for _, line :=range data {
-		fmt.Fprintf(file, line+"\t")
+	for _, cancion :=range canciones {
+		id := strconv.Itoa(cancion.Id)
+		duracion := strconv.Itoa(cancion.Duracion)
+		line := id+"|"+cancion.Nombre+"|"+cancion.Artista+"|"+duracion+"|"+cancion.Genero+"\r\n"
+		fmt.Fprintf(file, line)
 	}
 }
+
+//Recibe un arreglo de Listas, abre la direccion especificada y escribe en el archivo la data
+func writeFileListas(listas []Listado, path string){
+	file, err := os.Create(path)
+	check(err)
+	defer file.Close()
+	for _, cancion :=range canciones {
+		id := strconv.Itoa(cancion.Id)
+		duracion := strconv.Itoa(cancion.Duracion)
+		line := id+"|"+cancion.Nombre+"|"+cancion.Artista+"|"+duracion+"|"+cancion.Genero+"\r\n"
+		fmt.Fprintf(file, line)
+	}
+}
+
 
 
