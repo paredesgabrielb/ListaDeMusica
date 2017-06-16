@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab4ed1f9-9b2e-48eb-a141-af1b10c80e5d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/entidades.go" afterPath="$PROJECT_DIR$/entidades.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fileHandler.go" afterPath="$PROJECT_DIR$/fileHandler.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/funcionesPrincipales.go" afterPath="$PROJECT_DIR$/funcionesPrincipales.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/helpers.go" afterPath="$PROJECT_DIR$/helpers.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.go" afterPath="$PROJECT_DIR$/main.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/files/canciones.txt" afterPath="$PROJECT_DIR$/files/canciones.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/files/listasCanciones.txt" afterPath="$PROJECT_DIR$/files/listasCanciones.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="helpers.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="helpers.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/helpers.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="43" column="45" lean-forward="true" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
+            <state relative-caret-position="782">
+              <caret line="54" column="30" lean-forward="false" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -68,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="funcionesPrincipales.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="funcionesPrincipales.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/funcionesPrincipales.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="293">
@@ -84,6 +82,7 @@
     <findStrings>
       <find>EliminarCancionDeLista</find>
       <find>GetCancionEnLista</find>
+      <find>id</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -403,7 +402,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="19" width="1346" height="688" extended-state="1" />
+    <frame x="-9" y="19" width="1346" height="688" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -507,10 +506,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/helpers.go">
+    <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="43" column="45" lean-forward="true" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
+        <state relative-caret-position="465">
+          <caret line="43" column="33" lean-forward="false" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -523,18 +522,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="43" column="33" lean-forward="false" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/funcionesPrincipales.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="77" column="53" lean-forward="false" selection-start-line="77" selection-start-column="53" selection-end-line="77" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helpers.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="54" column="30" lean-forward="false" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="30" />
           <folding />
         </state>
       </provider>
