@@ -36,7 +36,7 @@ func writeFile(data []string){
 	check(err)
 	defer file.Close()
 	for _, line :=range data {
-		fmt.Fprintf(file, line+"\t")
+		fmt.Fprintf(file, "%s\n",line)
 	}
 }
 
