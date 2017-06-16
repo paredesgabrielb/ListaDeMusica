@@ -25,4 +25,4 @@ var Canciones = []Cancion{}
 
 var Listas = []Listado{}
 
-var ListasCanciones = []ListasCanciones{}
+var ListasCanciones = []ListaCancion{}

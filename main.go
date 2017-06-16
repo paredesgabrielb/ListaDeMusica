@@ -41,5 +41,6 @@ func iniciar() {
 func main() {
 	InicializarCanciones()
 	InicializarListas()
+	InicializarListaCancion()
 	iniciar()
 }

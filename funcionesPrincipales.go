@@ -32,6 +32,27 @@ func InicializarCanciones() {
 	}
 }
 
+//Inicializa ListaCanciones
+func InicializarListaCancion() {
+	fileListaCancion, err := readFileLines("files/listasCanciones.txt")
+	check(err)
+	var listaCancionDetail []string
+	if len(fileListaCancion) > 0 {
+		for _, line := range fileListaCancion {
+			listaCancionDetail = strings.Split(line, "|")
+			idLista, err := strconv.Atoi(listaCancionDetail[0])
+			check(err)
+			idCancion, err := strconv.Atoi(listaCancionDetail[1])
+			check(err)
+			ListasCanciones = append(ListasCanciones, ListaCancion{
+				idLista,
+				idCancion})
+		}
+
+	}
+}
+
+
 //Inicializa data en la lista
 func InicializarListas() {
 	fileListas, err := readFileLines("files/listas.txt")
@@ -42,13 +63,10 @@ func InicializarListas() {
 			listaDetail = strings.Split(line, "|")
 			id, err := strconv.Atoi(listaDetail[0])
 			check(err)
-			duracion, err := strconv.Atoi(listaDetail[3])
 			Listas = append(Listas, Listado{
 				id,
 				listaDetail[1],
-				listaDetail[2],
-				duracion,
-				listaDetail[4]})
+				listaDetail[2]})
 		}
 	}
 }
@@ -57,6 +75,7 @@ func InicializarListas() {
 func saveDataToFile() {
 	writeFileCanciones(Canciones, "files/canciones.txt")
 	writeFileListas(Listas, "files/listas.txt")
+	writeFileListaCancion(ListasCanciones, "files/listasCanciones.txt")
 }
 
 func AnadirCancion(cancion Cancion) {
@@ -114,8 +133,7 @@ func GenerarLista() Listado {
 	return Listado{
 		len(Listas) + 1,
 		nombre,
-		descripcion,
-		[]Cancion{}}
+		descripcion}
 }
 
 func AnadirLista(lista Listado) {
@@ -127,7 +145,7 @@ func EliminarLista(id int) {
 }
 
 func AnadirCancionALista(id int, cancion Cancion) {
-	ListasCanciones = append(ListasCanciones, []ListaCancion{id, cancion.Id})
+	ListasCanciones = append(ListasCanciones, ListaCancion{id, cancion.Id})
 }
 
 func EliminarCancion(id int) {

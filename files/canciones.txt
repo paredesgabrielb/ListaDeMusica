@@ -1,0 +1,7 @@
+1|Dariel|Dariel|0|genero
+2|asfas|asfasfasf|0|genero1
+3|nombre2|artista2|0|genero2
+4|nombre3|artista3|0|genero3
+5|nombre4|artista4|0|genero4
+6|asdasd|asdasd|123|asdasd
+7|Tu amor|Romeo Sta|12|rock

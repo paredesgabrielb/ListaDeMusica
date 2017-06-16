@@ -28,28 +28,16 @@ func readFileLines(path string)([]string, error){
 }
 
 //Recibe un arreglo de canciones, abre la direccion especificada y escribe en el archivo la data
-func writeFileCanciones(canciones []Cancion, path string){
+func writeFileCanciones(canciones []Cancion, path string) {
 	file, err := os.Create(path)
 	check(err)
 	defer file.Close()
-<<<<<<< HEAD
-	for _, cancion :=range canciones {
+	for _, cancion := range canciones {
 		id := strconv.Itoa(cancion.Id)
 		duracion := strconv.Itoa(cancion.Duracion)
-		line := id+"|"+cancion.Nombre+"|"+cancion.Artista+"|"+duracion+"|"+cancion.Genero+"\r\n"
+		line := id + "|" + cancion.Nombre + "|" + cancion.Artista + "|" + duracion + "|" + cancion.Genero + "\r\n"
 		fmt.Fprintf(file, line)
-=======
-	for _, line :=range data {
-		fmt.Fprintf(file, "%s\n",line)
->>>>>>> 0643ad52209b4772a693be37142eb6f70f393338
 	}
-
-	// Revisar este codigo
-	//content := []byte(data) // convertir el []string a []byte 
-	//err = ioutil.WriteFile(filename:"canciones.txt",content, perm: 0644)
-	//if err != nil{
-	//	fmt.Println("Exploto");
-	//}
 }
 
 //Recibe un arreglo de Listas, abre la direccion especificada y escribe en el archivo la data
@@ -57,10 +45,22 @@ func writeFileListas(listas []Listado, path string){
 	file, err := os.Create(path)
 	check(err)
 	defer file.Close()
-	for _, cancion :=range canciones {
-		id := strconv.Itoa(cancion.Id)
-		duracion := strconv.Itoa(cancion.Duracion)
-		line := id+"|"+cancion.Nombre+"|"+cancion.Artista+"|"+duracion+"|"+cancion.Genero+"\r\n"
+	for _, lista :=range listas {
+		id := strconv.Itoa(lista.Id)
+		line := id+"|"+lista.Nombre+"|"+lista.Descripcion+"\r\n"
+		fmt.Fprintf(file, line)
+	}
+}
+
+//Recibe un arreglo de Listas, abre la direccion especificada y escribe en el archivo la data
+func writeFileListaCancion(listaCancion []ListaCancion, path string){
+	file, err := os.Create(path)
+	check(err)
+	defer file.Close()
+	for _, lista :=range listaCancion {
+		idCancion := strconv.Itoa(lista.IdCancion)
+		idLista := strconv.Itoa(lista.IdLista)
+		line := idLista+"|"+idCancion+"\r\n"
 		fmt.Fprintf(file, line)
 	}
 }

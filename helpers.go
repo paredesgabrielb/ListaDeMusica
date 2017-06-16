@@ -52,17 +52,17 @@ func ImprimirCanciones(canciones []Cancion) {
 	}
 }
 
-func GetListaCancionesByListaId(idLista int) {
-	var IdCanciones = []Cancion{}
-	for _, relacion := range ListasCanciones {
-		if relacion.IdLista == idLista {
-			IdCanciones = append(IdCanciones, relacion)
+func GetListaCancionesByListaId(idLista int) []int{
+	var IdCanciones = []int{}
+	for i := 0; i < len(ListasCanciones); i++ {
+		if ListasCanciones[i].IdLista == idLista {
+			IdCanciones = append(IdCanciones, i)
 		}
 	}
 	return IdCanciones
 }
 
-func GetCancionEnLista(idLista int, idCancion) {
+func GetCancionEnLista(idLista int, idCancion int) int {
 	for i := 0; i < len(ListasCanciones); i++ {
 		if ListasCanciones[i].IdLista == idLista && ListasCanciones[i].IdCancion == idCancion {
 			return i
@@ -72,7 +72,8 @@ func GetCancionEnLista(idLista int, idCancion) {
 }
 
 func ImprimirCancionesByLista(id int) {
-	if len(GetListaCancionesByListaId(id)) == 0 {
+	var idCanciones = GetListaCancionesByListaId(id)
+	if len(idCanciones) == 0 {
 		fmt.Println("\nNo se encontraron canciones.")
 	} else {
 		for _, index := range GetListaCancionesByListaId(id) {
@@ -168,12 +169,6 @@ func ReorganizarIdsListas() {
 	}
 }
 
-func ReorganizarIdsCancionesEnLista(id int) {
-	for i := range Listas[id].Canciones {
-		Listas[id].Canciones[i].Id = i + 1
-	}
-}
-
 func MenuListas() {
 	var opcion int
 
@@ -217,7 +212,6 @@ func MenuListas() {
 		if VerificarIdCancionesEnLista(idLista, idCancion) {
 			EliminarCancionDeLista(GetCancionEnLista(idLista-1, idCancion-1))
 			fmt.Println("\nCancion eliminada satisfactoriamente!")
-			ReorganizarIdsCancionesEnLista(idLista - 1)
 		} else {
 			fmt.Print("\nEl ID especificado no existe.")
 		}
