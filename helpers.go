@@ -83,7 +83,6 @@ func ImprimirCancionesEnLista(canciones []Cancion) {
 }
 
 func PauseConsole() {
-	//con \n no funciona en windows
 	if runtime.GOOS == "windows" {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Println("\n--Presione ENTER para regresar el menu principal--\n")
