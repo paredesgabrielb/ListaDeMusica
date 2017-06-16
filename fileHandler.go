@@ -38,6 +38,13 @@ func writeFile(data []string){
 	for _, line :=range data {
 		fmt.Fprintf(file, "%s\n",line)
 	}
+
+	// Revisar este codigo
+	//content := []byte(data) // convertir el []string a []byte 
+	//err = ioutil.WriteFile(filename:"canciones.txt",content, perm: 0644)
+	//if err != nil{
+	//	fmt.Println("Exploto");
+	//}
 }
 
 
