@@ -51,12 +51,32 @@ func ImprimirCanciones(canciones []Cancion) {
 		}
 	}
 }
+
+func GetListaCancionesByListaId(idLista int) {
+	var IdCanciones = []Cancion{}
+	for _, relacion := range ListasCanciones {
+		if relacion.IdLista == idLista {
+			IdCanciones = append(IdCanciones, relacion)
+		}
+	}
+	return IdCanciones
+}
+
+func GetCancionEnLista(idLista int, idCancion) {
+	for i := 0; i < len(ListasCanciones); i++ {
+		if ListasCanciones[i].IdLista == idLista && ListasCanciones[i].IdCancion == idCancion {
+			return i
+		}
+	}
+	return -1
+}
+
 func ImprimirCancionesByLista(id int) {
-	if len(Listas[id].Canciones) == 0 {
+	if len(GetListaCancionesByListaId(id)) == 0 {
 		fmt.Println("\nNo se encontraron canciones.")
 	} else {
-		for _, cancion := range Listas[id].Canciones {
-			fmt.Printf("\t" + strconv.Itoa(cancion.Id) + "- " + cancion.Nombre + ". By: " + cancion.Artista + "\n")
+		for _, index := range GetListaCancionesByListaId(id) {
+			fmt.Printf("\t" + strconv.Itoa(Canciones[index].Id) + "- " + Canciones[index].Nombre + ". By: " + Canciones[index].Artista + "\n")
 		}
 	}
 }
@@ -121,7 +141,7 @@ func VerificarIdCancion(id int) bool {
 }
 
 func VerificarIdCancionesEnLista(idLista, idCancion int) bool {
-	if idCancion <= 0 || idCancion > len(Listas[idLista-1].Canciones) {
+	if idCancion <= 0 || idCancion > len(Canciones) {
 		return false
 	} else {
 		return true
@@ -195,7 +215,7 @@ func MenuListas() {
 		fmt.Print("\nDigite el ID de la cancion a eliminar: ")
 		fmt.Scan(&idCancion)
 		if VerificarIdCancionesEnLista(idLista, idCancion) {
-			EliminarCancionDeLista(idLista-1, idCancion-1)
+			EliminarCancionDeLista(GetCancionEnLista(idLista-1, idCancion-1))
 			fmt.Println("\nCancion eliminada satisfactoriamente!")
 			ReorganizarIdsCancionesEnLista(idLista - 1)
 		} else {

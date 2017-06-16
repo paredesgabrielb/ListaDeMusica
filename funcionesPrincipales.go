@@ -4,19 +4,19 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 //funciones principales
 
 //Inicializa data en las canciones
-func InicializarCanciones(){
+func InicializarCanciones() {
 	fileCanciones, err := readFileLines("files/canciones.txt")
 	check(err)
 	var cancionDetail []string
-	if(len(fileCanciones) > 0){
-		for _,line := range fileCanciones {
+	if len(fileCanciones) > 0 {
+		for _, line := range fileCanciones {
 			cancionDetail = strings.Split(line, "|")
 			id, err := strconv.Atoi(cancionDetail[0])
 			check(err)
@@ -33,13 +33,13 @@ func InicializarCanciones(){
 }
 
 //Inicializa data en la lista
-func InicializarListas(){
+func InicializarListas() {
 	fileListas, err := readFileLines("files/listas.txt")
 	check(err)
 	var listaDetail []string
-	if(len(fileListas) > 0){
-		for _,line := range fileListas{
-			listaDetail = strings.Split(line,"|")
+	if len(fileListas) > 0 {
+		for _, line := range fileListas {
+			listaDetail = strings.Split(line, "|")
 			id, err := strconv.Atoi(listaDetail[0])
 			check(err)
 			duracion, err := strconv.Atoi(listaDetail[3])
@@ -54,9 +54,9 @@ func InicializarListas(){
 }
 
 //graba los archivos
-func saveDataToFile(){
-	writeFileCanciones(Canciones,"files/canciones.txt")
-	writeFileListas(Listas,"files/listas.txt")
+func saveDataToFile() {
+	writeFileCanciones(Canciones, "files/canciones.txt")
+	writeFileListas(Listas, "files/listas.txt")
 }
 
 func AnadirCancion(cancion Cancion) {
@@ -127,14 +127,13 @@ func EliminarLista(id int) {
 }
 
 func AnadirCancionALista(id int, cancion Cancion) {
-	cancion.Id = len(Listas[id].Canciones) + 1
-	Listas[id].Canciones = append(Listas[id].Canciones, cancion)
+	ListasCanciones = append(ListasCanciones, []ListaCancion{id, cancion.Id})
 }
 
 func EliminarCancion(id int) {
 	Canciones = append(Canciones[:id], Canciones[id+1:]...)
 }
 
-func EliminarCancionDeLista(id, idCancion int) {
-	Listas[id].Canciones = append(Listas[id].Canciones[:idCancion], Listas[id].Canciones[idCancion+1:]...)
+func EliminarCancionDeLista(idListaCancion int) {
+	ListasCanciones = append(ListasCanciones[:idListaCancion], ListasCanciones[idListaCancion+1:]...)
 }

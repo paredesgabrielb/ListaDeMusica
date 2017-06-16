@@ -13,10 +13,16 @@ type Listado struct {
 	Id          int
 	Nombre      string
 	Descripcion string
-	Canciones   []Cancion
+}
+
+type ListaCancion struct {
+	IdLista   int
+	IdCancion int
 }
 
 //Slice de canciones
 var Canciones = []Cancion{}
 
 var Listas = []Listado{}
+
+var ListasCanciones = []ListasCanciones{}
