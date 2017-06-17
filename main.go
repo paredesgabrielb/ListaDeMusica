@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 func iniciar() {
@@ -18,7 +19,6 @@ func iniciar() {
 		ImprimirMenuDeCanciones()
 		MenuCanciones()
 		LimpiarPantalla()
-		iniciar()
 		
 		break
 	case 2: // 2- Ir al menú de Listas.
@@ -27,14 +27,12 @@ func iniciar() {
 		ImprimirMenuDeListas()
 		MenuListas()
 		LimpiarPantalla()
-		iniciar()
 		break
 	case 3: // 3- Salir.
-		saveDataToFile()
+		os.Exit(3)
 		break
 	default:
 		LimpiarPantalla()
-		iniciar()
 	}
 }
 
@@ -42,5 +40,7 @@ func main() {
 	InicializarCanciones()
 	InicializarListas()
 	InicializarListaCancion()
-	iniciar()
+	for{
+		iniciar()
+	}
 }

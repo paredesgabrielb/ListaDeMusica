@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"runtime"
+	"os/exec"
+	"os"
 )
 
 //Metodos de pantalla
@@ -39,4 +42,17 @@ func ImprimirMenuDeCanciones() {
 	fmt.Println("7- Buscar por Genero.")
 	fmt.Println("8- Volver al Menú Principal.")
 	fmt.Print("\nElija una opcion => ")
+}
+
+func LimpiarPantalla() {
+	saveDataToFile()
+	if runtime.GOOS == "windows" {
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	} else {
+		cmd := exec.Command("clear") //Linux example, its tested
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	}
 }
