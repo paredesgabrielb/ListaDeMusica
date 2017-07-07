@@ -1,2 +1,10 @@
+<<<<<<< HEAD
 1|Test|TestList
 2|Test2|Tested2List
+=======
+1|lista|descripcion
+2|lista1|descripcion1
+3|algo|algo2
+4|Salsa|son salsa
+5|sergio|ergio
+>>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304

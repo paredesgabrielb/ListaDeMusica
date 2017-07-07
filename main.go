@@ -19,7 +19,6 @@ func iniciar() {
 		ImprimirMenuDeCanciones()
 		MenuCanciones()
 		LimpiarPantalla()
-		
 		break
 	case 2: // 2- Ir al menú de Listas.
 		LimpiarPantalla()
@@ -28,6 +27,7 @@ func iniciar() {
 		MenuListas()
 		LimpiarPantalla()
 		break
+<<<<<<< HEAD
 	case 3: // 3- Ir al menu de exportar.
 		LimpiarPantalla()
 		ImprimirCabecera()
@@ -40,6 +40,20 @@ func iniciar() {
 		ImprimirCabecera()
 		ImprimirMenuDeImport()
 		MenuImport()
+=======
+	case 3: // 3- Ir al menú de exportar.
+		LimpiarPantalla()
+		ImprimirCabecera()
+		ImprimirMenuDeExportar()
+		MenuExportar()
+		LimpiarPantalla()
+		break
+	case 4: // 4- Ir al menú de importar.
+		LimpiarPantalla()
+		ImprimirCabecera()
+		ImprimirMenuDeImportar()
+		MenuImportar()
+>>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 		LimpiarPantalla()
 		break
 	case 5: // 5- Salir.
@@ -54,7 +68,7 @@ func main() {
 	InicializarCanciones()
 	InicializarListas()
 	InicializarListaCancion()
-	for{
+	for {
 		iniciar()
 	}
 }

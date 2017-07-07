@@ -10,6 +10,51 @@ import (
 
 //funciones principales
 
+<<<<<<< HEAD
+=======
+//Inicializa data en las canciones
+func InicializarCanciones() {
+	fileCanciones, err := readFileLines("files/canciones.txt")
+	check(err)
+	var cancionDetail []string
+	if len(fileCanciones) > 0 {
+		for _, line := range fileCanciones {
+			cancionDetail = strings.Split(line, "|")
+			id, err := strconv.Atoi(cancionDetail[0])
+			check(err)
+			duracion, err := strconv.Atoi(cancionDetail[3])
+			Canciones = append(Canciones, Cancion{
+				id,
+				cancionDetail[1],
+				cancionDetail[2],
+				duracion,
+				cancionDetail[4]})
+		}
+
+	}
+}
+
+//Inicializa ListaCanciones
+func InicializarListaCancion() {
+	fileListaCancion, err := readFileLines("files/listasCanciones.txt")
+	check(err)
+	var listaCancionDetail []string
+	if len(fileListaCancion) > 0 {
+		for _, line := range fileListaCancion {
+			listaCancionDetail = strings.Split(line, "|")
+			idLista, err := strconv.Atoi(listaCancionDetail[0])
+			check(err)
+			idCancion, err := strconv.Atoi(listaCancionDetail[1])
+			check(err)
+			ListasCanciones = append(ListasCanciones, ListaCancion{
+				idLista,
+				idCancion})
+		}
+
+	}
+}
+
+>>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 //Inicializa data en la lista
 
 func AnadirCancion(cancion Cancion) {
@@ -98,8 +143,12 @@ func EliminarCancion(id int) {
 }
 
 func EliminarCancionDeLista(idListaCancion int) {
+<<<<<<< HEAD
 	ListasCanciones = append(ListasCanciones[:idListaCancion], ListasCanciones[idListaCancion+1:]...)
 	writeFileListaCancion(ListasCanciones, "files/listasCanciones.txt")
+=======
+	ListasCanciones = append(ListasCanciones[:idListaCancion], ListasCanciones[idListaCancion:]...)
+>>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 }
 
 //Inicializa data en las canciones
