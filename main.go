@@ -28,7 +28,21 @@ func iniciar() {
 		MenuListas()
 		LimpiarPantalla()
 		break
-	case 3: // 3- Salir.
+	case 3: // 3- Ir al menu de exportar.
+		LimpiarPantalla()
+		ImprimirCabecera()
+		ImprimirMenuDeExport()
+		MenuExport()
+		LimpiarPantalla()
+		break
+	case 4: // 4- Ir al menu de importar.
+		LimpiarPantalla()
+		ImprimirCabecera()
+		ImprimirMenuDeImport()
+		MenuImport()
+		LimpiarPantalla()
+		break
+	case 5: // 5- Salir.
 		os.Exit(3)
 		break
 	default:

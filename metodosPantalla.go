@@ -17,7 +17,9 @@ func ImprimirCabecera() {
 func ImprimirMenuPrincipal() {
 	fmt.Println("1- Ir al menú de Canciones.")
 	fmt.Println("2- Ir al menú de Listas.")
-	fmt.Println("3- Salir.")
+	fmt.Println("3- Ir al menú de exportaciones.")
+	fmt.Println("4- Ir al menú de importaciones.")
+	fmt.Println("5- Salir.")
 	fmt.Print("\nElija una opcion => ")
 }
 
@@ -44,8 +46,20 @@ func ImprimirMenuDeCanciones() {
 	fmt.Print("\nElija una opcion => ")
 }
 
+func ImprimirMenuDeExport(){
+	fmt.Println("1- Exportar a Xlsx")
+	fmt.Println("2- Exportar a Json")
+	fmt.Println("6- Volver al Menú Principal.")
+	fmt.Print("\nElija una opcion => ")
+}
+
+func ImprimirMenuDeImport(){
+	fmt.Println("1- Importar de Json")
+	fmt.Println("3- Volver al Menú Principal.")
+	fmt.Print("\nElija una opcion => ")
+}
+
 func LimpiarPantalla() {
-	saveDataToFile()
 	if runtime.GOOS == "windows" {
 		cmd := exec.Command("cmd", "/c", "cls")
 		cmd.Stdout = os.Stdout

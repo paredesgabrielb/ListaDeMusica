@@ -7,16 +7,13 @@ import(
 	"strconv"
 )
 
-func check(e error){
-	if e != nil {
-		panic(e);
-	}
-}
-
 //Recibe la direccion del archivo a leer, retorna un arreglo de string con lo leido
 func readFileLines(path string)([]string, error){
 	file, err := os.Open(path)
-	check(err)
+	if(err != nil){
+		fmt.Print("No existe el archivo de lectura.\n")
+		os.Exit(1)
+	}
 	defer file.Close()
 
 	var lines []string
@@ -30,7 +27,10 @@ func readFileLines(path string)([]string, error){
 //Recibe un arreglo de canciones, abre la direccion especificada y escribe en el archivo la data
 func writeFileCanciones(canciones []Cancion, path string) {
 	file, err := os.Create(path)
-	check(err)
+	if(err != nil){
+		fmt.Printf("No se ha podido guardar el archivo de Canciones.\n")
+		os.Exit(1)
+	}
 	defer file.Close()
 	for _, cancion := range canciones {
 		id := strconv.Itoa(cancion.Id)
@@ -43,7 +43,10 @@ func writeFileCanciones(canciones []Cancion, path string) {
 //Recibe un arreglo de Listas, abre la direccion especificada y escribe en el archivo la data
 func writeFileListas(listas []Listado, path string){
 	file, err := os.Create(path)
-	check(err)
+	if(err != nil){
+		fmt.Printf("No se ha podido guardar el archivo de Listas.\n")
+		os.Exit(1)
+	}
 	defer file.Close()
 	for _, lista :=range listas {
 		id := strconv.Itoa(lista.Id)
@@ -55,7 +58,10 @@ func writeFileListas(listas []Listado, path string){
 //Recibe un arreglo de Listas, abre la direccion especificada y escribe en el archivo la data
 func writeFileListaCancion(listaCancion []ListaCancion, path string){
 	file, err := os.Create(path)
-	check(err)
+	if(err != nil){
+		fmt.Printf("No se ha podido guardar el archivo de Lista de Candiones.")
+		os.Exit(1)
+	}
 	defer file.Close()
 	for _, lista :=range listaCancion {
 		idCancion := strconv.Itoa(lista.IdCancion)
