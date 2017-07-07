@@ -9,7 +9,7 @@ import (
 )
 
 //funciones principales
-
+/* // OLD
 //Inicializa data en las canciones
 func InicializarCanciones() {
 	fileCanciones, err := readFileLines("files/canciones.txt")
@@ -51,6 +51,8 @@ func InicializarListaCancion() {
 
 	}
 }
+
+*/
 
 //Inicializa data en la lista
 

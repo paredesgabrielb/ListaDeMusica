@@ -6,7 +6,7 @@ import(
 	"github.com/Luxurioust/excelize"
 	"strconv"
 	"encoding/json"
-	"log"
+	//"log"
   	"github.com/signintech/gopdf"
 )
 
@@ -94,18 +94,15 @@ func exportPdf(){
 	}*/
 
 	for i:=0; i < len(Canciones); i++ {
-		pdf.Cell(nil, Canciones[i].Id + "|" +Canciones[i].Nombre+ "|" + Canciones[i].Artista+"|" + Canciones[i].Duracion + "|" + Canciones[i].Genero)
+		pdf.Cell(nil, Canciones[i].Nombre)//Canciones[i].Id + "|" +Canciones[i].Nombre+ "|" + Canciones[i].Artista+"|" + Canciones[i].Duracion + "|" + Canciones[i].Genero)
 	    pdf.Br(20)
 	}
 
-	xlsx.SetCellValue("Sheet2", "A1", "Id")
-	xlsx.SetCellValue("Sheet2", "B1", "Nombre")
-	xlsx.SetCellValue("Sheet1", "C1", "Artista")
 	for i := 0; i < len(Listas); i++ {
-		pdf.Cell(nil, Listas[i].Id + "|" + Listas[i].Nombre + row + "|" +Listas[i].Descripcion)
+		pdf.Cell(nil, Listas[i].Nombre)//Listas[i].Id + "|" + Listas[i].Nombre + "|" +Listas[i].Descripcion)
 		pdf.Br(20)
 	}
-	pdf.Cell(nil, "您好")
+	pdf.Cell(nil, " HOla mundo ")
 	pdf.WritePdf("hello.pdf")
 	fmt.Printf("Archivo exportado")
 	PauseConsole()
