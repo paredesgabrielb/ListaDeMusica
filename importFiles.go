@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func importJson(){
+func importToJson(){
 	cancionesJson, _ := readFileLines("./exportedFiles/Canciones.json")
 	var cancionData []Cancion
 	b := []byte(cancionesJson[0])
@@ -34,4 +34,8 @@ func importJson(){
 
 	}*/
 	fmt.Printf("Import exitoso.")
+}
+
+func importToXml(){
+	
 }

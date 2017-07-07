@@ -14,7 +14,7 @@ import(
 
 //Xlsx tiene un bug en el que si cambias el nombre de la hoja antes de escribir en ella por alguna razon no escribe en la hoja.
 //El fix mas rapido es cambiar el nombre de la hoja luego de escribir en ella
-func exportXlsx(){
+func exportToXlsx(){
 	var row = ""
 	xlsx := excelize.NewFile()
 
@@ -61,7 +61,29 @@ func exportXlsx(){
 	PauseConsole()
 }
 
-func exportJson(){
+func exportToXml(){
+
+	
+}
+func exportToCsv(canciones []Cancion, listas []Listado) {
+	file, err := os.Create("export/export.csv")
+	check(err)
+	defer file.Close()
+	for _, cancion := range canciones {
+		id := strconv.Itoa(cancion.Id)
+		duracion := strconv.Itoa(cancion.Duracion)
+		line := id + "," + cancion.Nombre + "," + cancion.Artista + "," + duracion + "," + cancion.Genero + "\r\n"
+		fmt.Fprintf(file, line)
+	}
+	for _, lista := range listas {
+		id := strconv.Itoa(lista.Id)
+		line := id + "," + lista.Nombre + "," + lista.Descripcion + "\r\n"
+		fmt.Fprintf(file, line)
+	}
+}
+
+
+func exportToJson(){
 	c, _ := json.Marshal(Canciones)
 	listas, _ := json.Marshal(Listas)
 	ListasCanciones, _ := json.Marshal(ListasCanciones)
@@ -77,7 +99,7 @@ func exportJson(){
 	PauseConsole()
 }
 
-func exportPdf(){
+func exportToPdf(){
 	pdf := gopdf.GoPdf{}
 	pdf.Start(gopdf.Config{ PageSize: gopdf.Rect{W: 595.28, H: 841.89}}) //595.28, 841.89 = A4
 	pdf.AddPage()
@@ -107,3 +129,4 @@ func exportPdf(){
 	fmt.Printf("Archivo exportado")
 	PauseConsole()
 }
+
