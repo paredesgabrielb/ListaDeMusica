@@ -52,7 +52,6 @@ func InicializarListaCancion() {
 	}
 }
 
-
 //Inicializa data en la lista
 func InicializarListas() {
 	fileListas, err := readFileLines("files/listas.txt")
@@ -153,5 +152,5 @@ func EliminarCancion(id int) {
 }
 
 func EliminarCancionDeLista(idListaCancion int) {
-	ListasCanciones = append(ListasCanciones[:idListaCancion], ListasCanciones[idListaCancion+1:]...)
+	ListasCanciones = append(ListasCanciones[:idListaCancion], ListasCanciones[idListaCancion:]...)
 }

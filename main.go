@@ -19,7 +19,6 @@ func iniciar() {
 		ImprimirMenuDeCanciones()
 		MenuCanciones()
 		LimpiarPantalla()
-		
 		break
 	case 2: // 2- Ir al menú de Listas.
 		LimpiarPantalla()
@@ -28,7 +27,21 @@ func iniciar() {
 		MenuListas()
 		LimpiarPantalla()
 		break
-	case 3: // 3- Salir.
+	case 3: // 3- Ir al menú de exportar.
+		LimpiarPantalla()
+		ImprimirCabecera()
+		ImprimirMenuDeExportar()
+		MenuExportar()
+		LimpiarPantalla()
+		break
+	case 4: // 4- Ir al menú de importar.
+		LimpiarPantalla()
+		ImprimirCabecera()
+		ImprimirMenuDeImportar()
+		MenuImportar()
+		LimpiarPantalla()
+		break
+	case 5: // 5- Salir.
 		os.Exit(3)
 		break
 	default:
@@ -40,7 +53,7 @@ func main() {
 	InicializarCanciones()
 	InicializarListas()
 	InicializarListaCancion()
-	for{
+	for {
 		iniciar()
 	}
 }

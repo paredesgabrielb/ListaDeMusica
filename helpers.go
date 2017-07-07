@@ -11,7 +11,6 @@ import (
 
 //helpers
 
-
 func GetInput(message string, reader bufio.Reader) string {
 	fmt.Print(message)
 	var value string
@@ -41,7 +40,7 @@ func ImprimirCanciones(canciones []Cancion) {
 	}
 }
 
-func GetListaCancionesByListaId(idLista int) []int{
+func GetListaCancionesByListaId(idLista int) []int {
 	var IdCanciones = []int{}
 	for i := 0; i < len(ListasCanciones); i++ {
 		if ListasCanciones[i].IdLista == idLista {
@@ -120,6 +119,20 @@ func VolverAlMenuListas() {
 	ImprimirCabecera()
 	ImprimirMenuDeListas()
 	MenuListas()
+}
+
+func VolverAlMenuExportar() {
+	VolverAlMenu()
+	ImprimirCabecera()
+	ImprimirMenuDeExportar()
+	MenuExportar()
+}
+
+func VolverAlMenuImportar() {
+	VolverAlMenu()
+	ImprimirCabecera()
+	ImprimirMenuDeImportar()
+	MenuImportar()
 }
 
 func VerificarIdCancion(id int) bool {
@@ -312,5 +325,70 @@ func MenuCanciones() {
 		break
 	default:
 		VolverAlMenuCanciones()
+	}
+}
+
+func MenuExportar() {
+	var opcion int
+
+	fmt.Scan(&opcion)
+
+	switch opcion {
+	case 1:
+		//TODO
+
+		VolverAlMenuExportar()
+		break
+	case 2:
+		exportToCsv(Canciones, Listas)
+		fmt.Println("\nSe ha exportado los datos!")
+		VolverAlMenuExportar()
+		break
+	case 3:
+		//TODO
+
+		VolverAlMenuExportar()
+		break
+	case 4:
+		//TODO
+
+		VolverAlMenuExportar()
+		break
+	case 5:
+		//TODO
+
+		VolverAlMenuExportar()
+		break
+	case 6:
+		//TODO
+
+		break
+	case 7:
+		break
+	default:
+		VolverAlMenuExportar()
+	}
+}
+
+func MenuImportar() {
+	var opcion int
+
+	fmt.Scan(&opcion)
+
+	switch opcion {
+	case 1:
+		//TODO
+
+		VolverAlMenuImportar()
+		break
+	case 2:
+		//TODO
+
+		VolverAlMenuImportar()
+		break
+	case 3:
+		break
+	default:
+		VolverAlMenuImportar()
 	}
 }

@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"runtime"
-	"os/exec"
 	"os"
+	"os/exec"
+	"runtime"
 )
 
 //Metodos de pantalla
@@ -17,7 +17,9 @@ func ImprimirCabecera() {
 func ImprimirMenuPrincipal() {
 	fmt.Println("1- Ir al menú de Canciones.")
 	fmt.Println("2- Ir al menú de Listas.")
-	fmt.Println("3- Salir.")
+	fmt.Println("3- Exportar info.")
+	fmt.Println("4- Importar info.")
+	fmt.Println("5- Salir.")
 	fmt.Print("\nElija una opcion => ")
 }
 
@@ -41,6 +43,23 @@ func ImprimirMenuDeCanciones() {
 	fmt.Println("6- Buscar por Artista.")
 	fmt.Println("7- Buscar por Genero.")
 	fmt.Println("8- Volver al Menú Principal.")
+	fmt.Print("\nElija una opcion => ")
+}
+
+func ImprimirMenuDeExportar() {
+	fmt.Println("1- PDF.")
+	fmt.Println("2- CSV.")
+	fmt.Println("3- XLSX.")
+	fmt.Println("4- JSON.")
+	fmt.Println("5- XML.")
+	fmt.Println("6- Volver al Menú Principal.")
+	fmt.Print("\nElija una opcion => ")
+}
+
+func ImprimirMenuDeImportar() {
+	fmt.Println("1- JSON.")
+	fmt.Println("2- XML.")
+	fmt.Println("3- Volver al Menú Principal.")
 	fmt.Print("\nElija una opcion => ")
 }
 
