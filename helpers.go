@@ -121,13 +121,6 @@ func VolverAlMenuListas() {
 	MenuListas()
 }
 
-<<<<<<< HEAD
-func VolverAlMenuExport(){
-	VolverAlMenu()
-	ImprimirCabecera()
-	ImprimirMenuDeExport()
-	MenuExport()
-=======
 func VolverAlMenuExportar() {
 	VolverAlMenu()
 	ImprimirCabecera()
@@ -140,7 +133,6 @@ func VolverAlMenuImportar() {
 	ImprimirCabecera()
 	ImprimirMenuDeImportar()
 	MenuImportar()
->>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 }
 
 func VerificarIdCancion(id int) bool {
@@ -336,35 +328,6 @@ func MenuCanciones() {
 	}
 }
 
-<<<<<<< HEAD
-func MenuExport() {
-	var opcion int
-	fmt.Scan(&opcion)
-	switch opcion {
-	case 1:
-		exportXlsx()
-		VolverAlMenuExport()
-		break
-	case 2:
-		exportJson()
-		VolverAlMenuExport()
-		break
-	default:
-		VolverAlMenuExport()
-	}
-}
-
-func MenuImport() {
-	var opcion int
-	fmt.Scan(&opcion)
-	switch opcion {
-	case 1:
-		importJson()
-		VolverAlMenu()
-		break
-	default:
-		VolverAlMenu()
-=======
 func MenuExportar() {
 	var opcion int
 
@@ -427,6 +390,5 @@ func MenuImportar() {
 		break
 	default:
 		VolverAlMenuImportar()
->>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 	}
 }

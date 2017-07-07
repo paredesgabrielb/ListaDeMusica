@@ -10,8 +10,6 @@ import (
 
 //funciones principales
 
-<<<<<<< HEAD
-=======
 //Inicializa data en las canciones
 func InicializarCanciones() {
 	fileCanciones, err := readFileLines("files/canciones.txt")
@@ -54,7 +52,6 @@ func InicializarListaCancion() {
 	}
 }
 
->>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 //Inicializa data en la lista
 
 func AnadirCancion(cancion Cancion) {
@@ -143,12 +140,7 @@ func EliminarCancion(id int) {
 }
 
 func EliminarCancionDeLista(idListaCancion int) {
-<<<<<<< HEAD
-	ListasCanciones = append(ListasCanciones[:idListaCancion], ListasCanciones[idListaCancion+1:]...)
-	writeFileListaCancion(ListasCanciones, "files/listasCanciones.txt")
-=======
 	ListasCanciones = append(ListasCanciones[:idListaCancion], ListasCanciones[idListaCancion:]...)
->>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 }
 
 //Inicializa data en las canciones

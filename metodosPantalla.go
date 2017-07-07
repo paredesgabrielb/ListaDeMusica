@@ -17,13 +17,8 @@ func ImprimirCabecera() {
 func ImprimirMenuPrincipal() {
 	fmt.Println("1- Ir al menú de Canciones.")
 	fmt.Println("2- Ir al menú de Listas.")
-<<<<<<< HEAD
-	fmt.Println("3- Ir al menú de exportaciones.")
-	fmt.Println("4- Ir al menú de importaciones.")
-=======
 	fmt.Println("3- Exportar info.")
 	fmt.Println("4- Importar info.")
->>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 	fmt.Println("5- Salir.")
 	fmt.Print("\nElija una opcion => ")
 }
@@ -51,30 +46,19 @@ func ImprimirMenuDeCanciones() {
 	fmt.Print("\nElija una opcion => ")
 }
 
-<<<<<<< HEAD
-func ImprimirMenuDeExport(){
-	fmt.Println("1- Exportar a Xlsx")
-	fmt.Println("2- Exportar a Json")
-=======
 func ImprimirMenuDeExportar() {
 	fmt.Println("1- PDF.")
 	fmt.Println("2- CSV.")
 	fmt.Println("3- XLSX.")
 	fmt.Println("4- JSON.")
 	fmt.Println("5- XML.")
->>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 	fmt.Println("6- Volver al Menú Principal.")
 	fmt.Print("\nElija una opcion => ")
 }
 
-<<<<<<< HEAD
-func ImprimirMenuDeImport(){
-	fmt.Println("1- Importar de Json")
-=======
 func ImprimirMenuDeImportar() {
 	fmt.Println("1- JSON.")
 	fmt.Println("2- XML.")
->>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 	fmt.Println("3- Volver al Menú Principal.")
 	fmt.Print("\nElija una opcion => ")
 }

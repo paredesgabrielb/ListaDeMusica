@@ -6,6 +6,8 @@ import(
 	"github.com/Luxurioust/excelize"
 	"strconv"
 	"encoding/json"
+	"log"
+  	"github.com/signintech/gopdf"
 )
 
 //funciones exportar
@@ -72,5 +74,39 @@ func exportJson(){
 	fileListasCanciones, _ := os.Create("./exportedFiles/ListasCanciones.json")
 	defer fileListasCanciones.Close()
 	fmt.Fprintf(fileListasCanciones, string(ListasCanciones))
+	PauseConsole()
+}
+
+func exportPdf(){
+	pdf := gopdf.GoPdf{}
+	pdf.Start(gopdf.Config{ PageSize: gopdf.Rect{W: 595.28, H: 841.89}}) //595.28, 841.89 = A4
+	pdf.AddPage()
+	/*err := pdf.AddTTFFont("HDZB_5", "../ttf/wts11.ttf")
+	if err != nil {
+		log.Print(err.Error())
+		return
+	}*/
+
+	/*err = pdf.SetFont("HDZB_5", "", 14)
+	if err != nil {
+		log.Print(err.Error())
+		return
+	}*/
+
+	for i:=0; i < len(Canciones); i++ {
+		pdf.Cell(nil, Canciones[i].Id + "|" +Canciones[i].Nombre+ "|" + Canciones[i].Artista+"|" + Canciones[i].Duracion + "|" + Canciones[i].Genero)
+	    pdf.Br(20)
+	}
+
+	xlsx.SetCellValue("Sheet2", "A1", "Id")
+	xlsx.SetCellValue("Sheet2", "B1", "Nombre")
+	xlsx.SetCellValue("Sheet1", "C1", "Artista")
+	for i := 0; i < len(Listas); i++ {
+		pdf.Cell(nil, Listas[i].Id + "|" + Listas[i].Nombre + row + "|" +Listas[i].Descripcion)
+		pdf.Br(20)
+	}
+	pdf.Cell(nil, "您好")
+	pdf.WritePdf("hello.pdf")
+	fmt.Printf("Archivo exportado")
 	PauseConsole()
 }
