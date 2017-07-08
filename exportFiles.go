@@ -122,8 +122,8 @@ func exportToJson(){
 	fmt.Fprintf(fileListas, string(listas))
 	fileListasCanciones, _ := os.Create("./exportedFiles/ListasCanciones.json")
 	defer fileListasCanciones.Close()
-	fmt.Fprintf(fileListasCanciones, string(ListasCanciones))
-	fmt.Printf("Archivo exportado")*/
+	fmt.Fprintf(fileListasCanciones, string(ListasCanciones))*/
+	fmt.Printf("Archivo exportado")
 }
 
 func exportToPdf(){
