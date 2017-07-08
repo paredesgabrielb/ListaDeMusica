@@ -121,28 +121,6 @@ func VolverAlMenuListas() {
 	MenuListas()
 }
 
-<<<<<<< HEAD
-func VolverAlMenuExport(){
-	VolverAlMenu()
-	ImprimirCabecera()
-	ImprimirMenuDeExport()
-	MenuExport()
-=======
-func VolverAlMenuExportar() {
-	VolverAlMenu()
-	ImprimirCabecera()
-	ImprimirMenuDeExportar()
-	MenuExportar()
-}
-
-func VolverAlMenuImportar() {
-	VolverAlMenu()
-	ImprimirCabecera()
-	ImprimirMenuDeImportar()
-	MenuImportar()
->>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
-}
-
 func VerificarIdCancion(id int) bool {
 	if id <= 0 || id > len(Canciones) {
 		return false
@@ -336,7 +314,6 @@ func MenuCanciones() {
 	}
 }
 
-<<<<<<< HEAD
 func MenuExport() {
 	var opcion int
 	fmt.Scan(&opcion)
@@ -364,7 +341,9 @@ func MenuImport() {
 		break
 	default:
 		VolverAlMenu()
-=======
+	}
+}
+
 func MenuExportar() {
 	var opcion int
 
@@ -414,19 +393,14 @@ func MenuImportar() {
 
 	switch opcion {
 	case 1:
-		//TODO
-
 		VolverAlMenuImportar()
 		break
 	case 2:
-		//TODO
-
 		VolverAlMenuImportar()
 		break
 	case 3:
 		break
 	default:
 		VolverAlMenuImportar()
->>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 	}
 }
