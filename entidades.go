@@ -2,22 +2,38 @@ package main
 
 //Entidad con sus propiedades
 type Cancion struct {
-	Id       int
-	Nombre   string
-	Artista  string
-	Duracion int
-	Genero   string
+	Id       int `json:"id"`
+	Nombre   string `json:"nombre"`
+	Artista  string `json:"artista"`
+	Duracion int `json:"duracion"`
+	Genero   string `json:"genero"`
 }
 
 type Listado struct {
-	Id          int
-	Nombre      string
-	Descripcion string
+	Id          int `json:"id"`
+	Nombre      string `json:"nombre"`
+	Descripcion string `json:"descripcion"`
 }
 
 type ListaCancion struct {
 	IdLista   int
 	IdCancion int
+}
+
+//Json Entity Handler
+type JsonHandler struct {
+	Cancion []struct {
+		Artista  string `json:"artista"`
+		Duracion string `json:"duracion"`
+		Genero   string `json:"genero"`
+		ID       int    `json:"id"`
+		Nombre   string `json:"nombre"`
+	} `json:"canciones"`
+	Listacanciones []struct {
+		Canciones []int `json:"canciones"`
+		ID        int `json:"id"`
+		Nombre    string `json:"nombre"`
+	}`json:"listacanciones"`
 }
 
 //Slice de canciones

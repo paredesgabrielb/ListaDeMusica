@@ -116,7 +116,7 @@ func VolverAlMenuCanciones() {
 
 func VolverAlMenuListas() {
 	VolverAlMenu()
-	ImprimirMenuDeExportar()
+	ImprimirCabecera()
 	ImprimirMenuDeListas()
 	MenuListas()
 }

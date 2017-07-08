@@ -126,6 +126,16 @@ func BuscarCancionPorArtista(artista string) []Cancion {
 	return busqueda
 }
 
+func BuscarCancionPorNombre(nombre string) []Cancion {
+	var busqueda = []Cancion{}
+	for _, cancion := range Canciones {
+		if strings.Contains(strings.ToLower(cancion.Nombre), strings.ToLower(nombre)) {
+			busqueda = append(busqueda, cancion)
+		}
+	}
+	return busqueda
+}
+
 func GenerarCancion() Cancion {
 	reader := bufio.NewReader(os.Stdin)
 	nombre := GetInput("Nombre: ", *reader)

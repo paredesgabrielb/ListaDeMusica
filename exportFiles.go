@@ -6,8 +6,7 @@ import(
 	"github.com/Luxurioust/excelize"
 	"strconv"
 	"encoding/json"
-	//"log"
-  	//"github.com/signintech/gopdf"
+  	"github.com/signintech/gopdf"
 )
 
 //funciones exportar
@@ -58,7 +57,6 @@ func exportToXlsx(){
 		os.Exit(1)
 	}
 	fmt.Printf("Archivo exportado")
-	PauseConsole()
 }
 
 
@@ -77,11 +75,43 @@ func exportToCsv(canciones []Cancion, listas []Listado) {
 		line := id + "," + lista.Nombre + "," + lista.Descripcion + "\r\n"
 		fmt.Fprintf(file, line)
 	}
+	fmt.Printf("Archivo exportado")
 }
 
 
 func exportToJson(){
-	c, _ := json.Marshal(Canciones)
+	var jExport JsonHandler
+	for _, cancion := range Canciones{
+		jExport.Cancion = append(jExport.Cancion, struct {
+			Artista  string `json:"artista"`
+			Duracion string `json:"duracion"`
+			Genero   string `json:"genero"`
+			ID       int    `json:"id"`
+			Nombre   string `json:"nombre"`
+		}{
+			cancion.Artista,
+			strconv.Itoa(cancion.Duracion),
+			cancion.Genero,
+			cancion.Id,
+			cancion.Nombre})
+	}
+	for _, lista := range Listas{
+		var cancionesInLista []int
+		cancionesInLista = GetListaCancionesByListaId(lista.Id)
+		jExport.Listacanciones = append(jExport.Listacanciones, struct {
+			Canciones []int `json:"canciones"`
+			ID        int `json:"id"`
+			Nombre    string `json:"nombre"`
+		}{
+			cancionesInLista,
+			lista.Id,
+			lista.Nombre})
+	}
+	e, _ := json.Marshal(jExport)
+	fileExport, _ := os.Create("./exportedFiles/listacanciones.json")
+	defer fileExport.Close()
+	fmt.Fprintf(fileExport, string(e))
+	/*c, _ := json.Marshal(Canciones)
 	listas, _ := json.Marshal(Listas)
 	ListasCanciones, _ := json.Marshal(ListasCanciones)
 	fileCanciones, _ := os.Create("./exportedFiles/Canciones.json")
@@ -93,7 +123,7 @@ func exportToJson(){
 	fileListasCanciones, _ := os.Create("./exportedFiles/ListasCanciones.json")
 	defer fileListasCanciones.Close()
 	fmt.Fprintf(fileListasCanciones, string(ListasCanciones))
-	PauseConsole()
+	fmt.Printf("Archivo exportado")*/
 }
 
 func exportToPdf(){
@@ -126,4 +156,3 @@ func exportToPdf(){
 	fmt.Printf("Archivo exportado")
 	PauseConsole()
 }
-
