@@ -27,18 +27,6 @@ func iniciar() {
 		MenuListas()
 		LimpiarPantalla()
 		break
-	case 3: // 3- Ir al menu de exportar.
-		LimpiarPantalla()
-		ImprimirCabecera()
-		//ImprimirMenuDeExport()
-		MenuExport()
-		LimpiarPantalla()
-		break
-	case 4: // 4- Ir al menu de importar.
-		LimpiarPantalla()
-		ImprimirCabecera()
-		//ImprimirMenuDeImport()
-		MenuImport()
 	case 3: // 3- Ir al menú de exportar.
 		LimpiarPantalla()
 		ImprimirCabecera()

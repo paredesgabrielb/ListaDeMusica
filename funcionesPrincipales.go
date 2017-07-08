@@ -9,6 +9,87 @@ import (
 )
 
 //funciones principales
+//Inicializa data en las canciones
+func InicializarCanciones() {
+	fileCanciones, err := readFileLines("files/canciones.txt")
+	if(err != nil){
+		fmt.Printf("No se ha podido encontrar el archivo de lectura de canciones.\n")
+		os.Exit(1)
+	}
+	var cancionDetail []string
+	if len(fileCanciones) > 0 {
+		for _, line := range fileCanciones {
+			cancionDetail = strings.Split(line, "|")
+			id, err := strconv.Atoi(cancionDetail[0])
+			if(err != nil){
+				fmt.Printf("Ha ocurrido un error en la asignacion de IDs de canciones.\n")
+				os.Exit(1)
+			}
+			duracion, err := strconv.Atoi(cancionDetail[3])
+			Canciones = append(Canciones, Cancion{
+				id,
+				cancionDetail[1],
+				cancionDetail[2],
+				duracion,
+				cancionDetail[4]})
+		}
+
+	}
+}
+
+//Inicializa ListaCanciones
+func InicializarListaCancion() {
+	fileListaCancion, err := readFileLines("files/listasCanciones.txt")
+	if(err != nil){
+		fmt.Printf("No se ha podido encontrar el archivo de lectura de listas.\n")
+		os.Exit(1)
+	}
+	var listaCancionDetail []string
+	if len(fileListaCancion) > 0 {
+		for _, line := range fileListaCancion {
+			listaCancionDetail = strings.Split(line, "|")
+			idLista, err := strconv.Atoi(listaCancionDetail[0])
+			if(err != nil){
+				fmt.Printf("Ha ocurrido un error en la asignacion de IDs de lista de canciones.\n")
+				os.Exit(1)
+			}
+			idCancion, err := strconv.Atoi(listaCancionDetail[1])
+			if(err != nil){
+				fmt.Printf("Ha ocurrido un error en la asignacion de IDs de Lista de Canciones.\n")
+				os.Exit(1)
+			}
+			ListasCanciones = append(ListasCanciones, ListaCancion{
+				idLista,
+				idCancion})
+		}
+
+	}
+}
+
+func InicializarListas() {
+	fileListas, err := readFileLines("files/listas.txt")
+	if(err != nil){
+		fmt.Printf("Ha ocurrido un error en la lectura del archivo de listas.\n")
+		os.Exit(1)
+	}
+	var listaDetail []string
+	if len(fileListas) > 0 {
+		for _, line := range fileListas {
+			listaDetail = strings.Split(line, "|")
+			id, err := strconv.Atoi(listaDetail[0])
+			if(err != nil){
+				fmt.Printf("Ha ocurrido un error en la asignacion de IDs de Listas.\n")
+				os.Exit(1)
+			}
+			Listas = append(Listas, Listado{
+				id,
+				listaDetail[1],
+				listaDetail[2]})
+		}
+	}
+}
+
+// Funciones con canciones
 
 func AnadirCancion(cancion Cancion) {
 	Canciones = append(Canciones, cancion)
@@ -98,85 +179,4 @@ func EliminarCancion(id int) {
 func EliminarCancionDeLista(idListaCancion int) {
 	ListasCanciones = append(ListasCanciones[:idListaCancion], ListasCanciones[idListaCancion+1:]...)
 	writeFileListaCancion(ListasCanciones, "files/listasCanciones.txt")
-}
-
-//Inicializa data en las canciones
-func InicializarCanciones() {
-	fileCanciones, err := readFileLines("files/canciones.txt")
-	if(err != nil){
-		fmt.Printf("No se ha podido encontrar el archivo de lectura de canciones.\n")
-		os.Exit(1)
-	}
-	var cancionDetail []string
-	if len(fileCanciones) > 0 {
-		for _, line := range fileCanciones {
-			cancionDetail = strings.Split(line, "|")
-			id, err := strconv.Atoi(cancionDetail[0])
-			if(err != nil){
-				fmt.Printf("Ha ocurrido un error en la asignacion de IDs de canciones.\n")
-				os.Exit(1)
-			}
-			duracion, err := strconv.Atoi(cancionDetail[3])
-			Canciones = append(Canciones, Cancion{
-				id,
-				cancionDetail[1],
-				cancionDetail[2],
-				duracion,
-				cancionDetail[4]})
-		}
-
-	}
-}
-
-//Inicializa data en la lista
-//Inicializa ListaCanciones
-func InicializarListaCancion() {
-	fileListaCancion, err := readFileLines("files/listasCanciones.txt")
-	if(err != nil){
-		fmt.Printf("No se ha podido encontrar el archivo de lectura de listas.\n")
-		os.Exit(1)
-	}
-	var listaCancionDetail []string
-	if len(fileListaCancion) > 0 {
-		for _, line := range fileListaCancion {
-			listaCancionDetail = strings.Split(line, "|")
-			idLista, err := strconv.Atoi(listaCancionDetail[0])
-			if(err != nil){
-				fmt.Printf("Ha ocurrido un error en la asignacion de IDs de lista de canciones.\n")
-				os.Exit(1)
-			}
-			idCancion, err := strconv.Atoi(listaCancionDetail[1])
-			if(err != nil){
-				fmt.Printf("Ha ocurrido un error en la asignacion de IDs de Lista de Canciones.\n")
-				os.Exit(1)
-			}
-			ListasCanciones = append(ListasCanciones, ListaCancion{
-				idLista,
-				idCancion})
-		}
-
-	}
-}
-
-func InicializarListas() {
-	fileListas, err := readFileLines("files/listas.txt")
-	if(err != nil){
-		fmt.Printf("Ha ocurrido un error en la lectura del archivo de listas.\n")
-		os.Exit(1)
-	}
-	var listaDetail []string
-	if len(fileListas) > 0 {
-		for _, line := range fileListas {
-			listaDetail = strings.Split(line, "|")
-			id, err := strconv.Atoi(listaDetail[0])
-			if(err != nil){
-				fmt.Printf("Ha ocurrido un error en la asignacion de IDs de Listas.\n")
-				os.Exit(1)
-			}
-			Listas = append(Listas, Listado{
-				id,
-				listaDetail[1],
-				listaDetail[2]})
-		}
-	}
 }

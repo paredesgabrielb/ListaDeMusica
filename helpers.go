@@ -116,9 +116,24 @@ func VolverAlMenuCanciones() {
 
 func VolverAlMenuListas() {
 	VolverAlMenu()
-	ImprimirMenuDeExport()
+	ImprimirMenuDeExportar()
 	ImprimirMenuDeListas()
 	MenuListas()
+}
+
+
+func VolverAlMenuExportar() {
+	VolverAlMenu()
+	ImprimirCabecera()
+	ImprimirMenuDeExportar()
+	MenuExportar()
+}
+
+func VolverAlMenuImportar() {
+	VolverAlMenu()
+	ImprimirCabecera()
+	ImprimirMenuDeImportar()
+	MenuImportar()
 }
 
 func VerificarIdCancion(id int) bool {
@@ -314,35 +329,6 @@ func MenuCanciones() {
 	}
 }
 
-func MenuExport() {
-	var opcion int
-	fmt.Scan(&opcion)
-	switch opcion {
-	case 1:
-		exportXlsx()
-		VolverAlMenuExport()
-		break
-	case 2:
-		exportJson()
-		VolverAlMenuExport()
-		break
-	default:
-		VolverAlMenuExport()
-	}
-}
-
-func MenuImport() {
-	var opcion int
-	fmt.Scan(&opcion)
-	switch opcion {
-	case 1:
-		importJson()
-		VolverAlMenu()
-		break
-	default:
-		VolverAlMenu()
-	}
-}
 
 func MenuExportar() {
 	var opcion int
@@ -350,36 +336,33 @@ func MenuExportar() {
 	fmt.Scan(&opcion)
 
 	switch opcion {
-	case 1:
+	case 1: // PDF 
 		//TODO
-
+		exportToPdf()
 		VolverAlMenuExportar()
 		break
-	case 2:
+	case 2: // CSV
 		exportToCsv(Canciones, Listas)
 		fmt.Println("\nSe ha exportado los datos!")
 		VolverAlMenuExportar()
 		break
-	case 3:
+	case 3: //XLSX
 		//TODO
-
+		exportToXlsx()
 		VolverAlMenuExportar()
 		break
-	case 4:
+	case 4: // JSON
 		//TODO
-
+		exportToJson()
 		VolverAlMenuExportar()
 		break
-	case 5:
+	case 5: // XML
 		//TODO
-
+		//exportToXml()
 		VolverAlMenuExportar()
 		break
-	case 6:
+	case 6: // Volver al menu principal
 		//TODO
-
-		break
-	case 7:
 		break
 	default:
 		VolverAlMenuExportar()
@@ -392,13 +375,16 @@ func MenuImportar() {
 	fmt.Scan(&opcion)
 
 	switch opcion {
-	case 1:
+	case 1: // JSON
+		//TODO
+		importToJson()
 		VolverAlMenuImportar()
 		break
-	case 2:
+	case 2: //XML
+		//TODO
 		VolverAlMenuImportar()
 		break
-	case 3:
+	case 3: // Volver al Menu principal
 		break
 	default:
 		VolverAlMenuImportar()

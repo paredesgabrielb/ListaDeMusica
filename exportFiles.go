@@ -6,13 +6,15 @@ import(
 	"github.com/Luxurioust/excelize"
 	"strconv"
 	"encoding/json"
+	//"log"
+  	//"github.com/signintech/gopdf"
 )
 
 //funciones exportar
 
 //Xlsx tiene un bug en el que si cambias el nombre de la hoja antes de escribir en ella por alguna razon no escribe en la hoja.
 //El fix mas rapido es cambiar el nombre de la hoja luego de escribir en ella
-func exportXlsx(){
+func exportToXlsx(){
 	var row = ""
 	xlsx := excelize.NewFile()
 
@@ -59,7 +61,26 @@ func exportXlsx(){
 	PauseConsole()
 }
 
-func exportJson(){
+
+func exportToCsv(canciones []Cancion, listas []Listado) {
+	file, err := os.Create("export/export.csv")
+	check(err)
+	defer file.Close()
+	for _, cancion := range canciones {
+		id := strconv.Itoa(cancion.Id)
+		duracion := strconv.Itoa(cancion.Duracion)
+		line := id + "," + cancion.Nombre + "," + cancion.Artista + "," + duracion + "," + cancion.Genero + "\r\n"
+		fmt.Fprintf(file, line)
+	}
+	for _, lista := range listas {
+		id := strconv.Itoa(lista.Id)
+		line := id + "," + lista.Nombre + "," + lista.Descripcion + "\r\n"
+		fmt.Fprintf(file, line)
+	}
+}
+
+
+func exportToJson(){
 	c, _ := json.Marshal(Canciones)
 	listas, _ := json.Marshal(Listas)
 	ListasCanciones, _ := json.Marshal(ListasCanciones)
@@ -74,3 +95,35 @@ func exportJson(){
 	fmt.Fprintf(fileListasCanciones, string(ListasCanciones))
 	PauseConsole()
 }
+
+func exportToPdf(){
+	pdf := gopdf.GoPdf{}
+	pdf.Start(gopdf.Config{ PageSize: gopdf.Rect{W: 595.28, H: 841.89}}) //595.28, 841.89 = A4
+	pdf.AddPage()
+	/*err := pdf.AddTTFFont("HDZB_5", "../ttf/wts11.ttf")
+	if err != nil {
+		log.Print(err.Error())
+		return
+	}*/
+
+	/*err = pdf.SetFont("HDZB_5", "", 14)
+	if err != nil {
+		log.Print(err.Error())
+		return
+	}*/
+
+	for i:=0; i < len(Canciones); i++ {
+		pdf.Cell(nil, Canciones[i].Nombre)//Canciones[i].Id + "|" +Canciones[i].Nombre+ "|" + Canciones[i].Artista+"|" + Canciones[i].Duracion + "|" + Canciones[i].Genero)
+	    pdf.Br(20)
+	}
+
+	for i := 0; i < len(Listas); i++ {
+		pdf.Cell(nil, Listas[i].Nombre)//Listas[i].Id + "|" + Listas[i].Nombre + "|" +Listas[i].Descripcion)
+		pdf.Br(20)
+	}
+	pdf.Cell(nil, " HOla mundo ")
+	pdf.WritePdf("hello.pdf")
+	fmt.Printf("Archivo exportado")
+	PauseConsole()
+}
+

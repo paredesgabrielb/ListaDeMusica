@@ -7,15 +7,12 @@ import (
 	"strconv"
 )
 
-<<<<<<< HEAD
-=======
 func check(e error) {
 	if e != nil {
 		panic(e)
 	}
 }
 
->>>>>>> a1d69821ef1525d3b1e029abe8e4c7194e3a9304
 //Recibe la direccion del archivo a leer, retorna un arreglo de string con lo leido
 func readFileLines(path string) ([]string, error) {
 	file, err := os.Open(path)
@@ -33,22 +30,6 @@ func readFileLines(path string) ([]string, error) {
 	return lines, scanner.Err()
 }
 
-func exportToCsv(canciones []Cancion, listas []Listado) {
-	file, err := os.Create("export/export.csv")
-	check(err)
-	defer file.Close()
-	for _, cancion := range canciones {
-		id := strconv.Itoa(cancion.Id)
-		duracion := strconv.Itoa(cancion.Duracion)
-		line := id + "," + cancion.Nombre + "," + cancion.Artista + "," + duracion + "," + cancion.Genero + "\r\n"
-		fmt.Fprintf(file, line)
-	}
-	for _, lista := range listas {
-		id := strconv.Itoa(lista.Id)
-		line := id + "," + lista.Nombre + "," + lista.Descripcion + "\r\n"
-		fmt.Fprintf(file, line)
-	}
-}
 
 //Recibe un arreglo de canciones, abre la direccion especificada y escribe en el archivo la data
 func writeFileCanciones(canciones []Cancion, path string) {
