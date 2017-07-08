@@ -20,6 +20,11 @@ type ListaCancion struct {
 	IdCancion int
 }
 
+type QueryXml struct {
+	Canciones []Cancion 'xml:cancion'
+	Listados []Listado 'xml:listacanciones'
+}
+
 //Slice de canciones
 var Canciones = []Cancion{}
 

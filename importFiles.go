@@ -46,6 +46,21 @@ func importFromXML(path string) {
 
 	b, _ := ioutil.ReadAll(xmlFile)
 
-	var q Query
+	var q QueryXml
 	xml.Unmarshal(b, &q)
+	for _, cancion := range q.Canciones {
+		Canciones = append(Canciones, Cancion{
+			cancion.Id,
+			cancion.Nombre,
+			cancion.Artista,
+			cancion.Duracion,
+			cancion.Genero})
+	}
+
+	for _, lista := range q.Listados {
+		Listas = append(Listas, Listado{
+			lista.Id,
+			lista.Nombre,
+			lista.Descripcion})
+	}
 }

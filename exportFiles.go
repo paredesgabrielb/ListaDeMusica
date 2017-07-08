@@ -96,6 +96,43 @@ func exportToJson() {
 	PauseConsole()
 }
 
+func exportToXML(canciones []Cancion, listas []Listado) {
+	file, err := os.Create("export/export.xml")
+	if err != nil {
+		panic(err)
+	} // panic if error
+	defer file.Close()
+
+	fmt.Fprintf(file, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n")
+	fmt.Fprintf(file, "<libreriacanciones>\r\n")
+
+	fmt.Fprintf(file, "<canciones>\r\n")
+	for _, cancion := range canciones {
+		id := strconv.Itoa(cancion.Id)
+		duracion := strconv.Itoa(cancion.Duracion)
+		line := "\t<cancion>\r\n\t\t<id>" + id + "</id>\r\n\t\t<nombre>" + cancion.Nombre + "</nombre>\r\n\t\t<artista>" + cancion.Artista + "</artista>\r\n\t\t<duracion>" + duracion + "</duracion>\r\n\t\t<genero>" + cancion.Genero + "</genero>\r\n\t</cancion>\r\n"
+		fmt.Fprintf(file, line)
+	}
+	fmt.Fprintf(file, "</canciones>\r\n\n")
+	fmt.Fprintf(file, "<listacanciones>\r\n")
+	for _, lista := range listas {
+		id := strconv.Itoa(lista.Id)
+		line := "\r\n\t<id>" + id + "</id>\r\n\t<nombre>" + lista.Nombre + "</nombre>\r\n\t<descripcion>" + lista.Descripcion + "</descripcion>\r\n"
+		fmt.Fprintf(file, line)
+		fmt.Fprintf(file, "\t<canciones>\r\n")
+
+		for _, index := range GetListaCancionesByListaId(lista.Id) {
+			id := strconv.Itoa(Canciones[index].Id)
+			line := "\t\t<id>" + id + "</id>\r\n"
+			fmt.Fprintf(file, line)
+		}
+		fmt.Fprintf(file, "\t</canciones>\r\n")
+
+		fmt.Fprintf(file, "</listacanciones>\r\n")
+	}
+	fmt.Fprintf(file, "</libreriacanciones>\r\n\n")
+}
+
 func exportToPdf() {
 	pdf := gopdf.GoPdf{}
 	pdf.Start(gopdf.Config{PageSize: gopdf.Rect{W: 595.28, H: 841.89}}) //595.28, 841.89 = A4

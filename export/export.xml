@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libreriacanciones>
+<canciones>
+	<cancion>
+		<id>10</id>
+		<nombre>Alive</nombre>
+		<nrtista>Y&F</nrtista>
+		<duracion>12</duracion>
+		<genero>pop</genero>
+	</cancion>
+	<cancion>
+		<id>11</id>
+		<nombre>Estas Conmigo</nombre>
+		<nrtista>Gabriela Rocha</nrtista>
+		<duracion>5</duracion>
+		<genero>Bossa</genero>
+	</cancion>
+	<cancion>
+		<id>12</id>
+		<nombre>Nombre Sobre todo</nombre>
+		<nrtista>Ibi</nrtista>
+		<duracion>6</duracion>
+		<genero>Balada</genero>
+	</cancion>
+</canciones>
+
+<listacanciones>
+
+	<id>7</id>
+	<nombre>worship</nombre>
+	<descripcion>para worship</descripcion>
+	<canciones>
+		<id>10</id>
+		<id>11</id>
+		<id>12</id>
+	</canciones>
+	</listacanciones>
+
+</libreriacanciones>
