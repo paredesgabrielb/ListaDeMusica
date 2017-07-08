@@ -121,7 +121,6 @@ func VolverAlMenuListas() {
 	MenuListas()
 }
 
-
 func VolverAlMenuExportar() {
 	VolverAlMenu()
 	ImprimirCabecera()
@@ -329,14 +328,13 @@ func MenuCanciones() {
 	}
 }
 
-
 func MenuExportar() {
 	var opcion int
 
 	fmt.Scan(&opcion)
 
 	switch opcion {
-	case 1: // PDF 
+	case 1: // PDF
 		//TODO
 		exportToPdf()
 		VolverAlMenuExportar()
@@ -357,8 +355,8 @@ func MenuExportar() {
 		VolverAlMenuExportar()
 		break
 	case 5: // XML
-		//TODO
-		//exportToXml()
+		exportToXml()
+		fmt.Println("\nSe ha exportado los datos!")
 		VolverAlMenuExportar()
 		break
 	case 6: // Volver al menu principal
@@ -381,7 +379,11 @@ func MenuImportar() {
 		VolverAlMenuImportar()
 		break
 	case 2: //XML
-		//TODO
+		fmt.Print("\nIngrese el nombre del archivo sin su extension: ")
+		reader := bufio.NewReader(os.Stdin)
+		archivo := GetInput("", *reader)
+		importFromXML(archivo)
+		fmt.Println("\nSe ha importado los datos!")
 		VolverAlMenuImportar()
 		break
 	case 3: // Volver al Menu principal

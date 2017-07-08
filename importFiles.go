@@ -5,12 +5,12 @@ import (
 	"fmt"
 )
 
-func importToJson(){
+func importToJson() {
 	cancionesJson, _ := readFileLines("./exportedFiles/Canciones.json")
 	var cancionData []Cancion
 	b := []byte(cancionesJson[0])
-	json.Unmarshal(b,&cancionData)
-	for _, cancion := range cancionData{
+	json.Unmarshal(b, &cancionData)
+	for _, cancion := range cancionData {
 		Canciones = append(Canciones, Cancion{
 			cancion.Id,
 			cancion.Nombre,
@@ -34,4 +34,18 @@ func importToJson(){
 
 	}*/
 	fmt.Printf("Import exitoso.")
+}
+
+func importFromXML(path string) {
+	xmlFile, err := os.Open(path + ".xml")
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		return
+	}
+	defer xmlFile.Close()
+
+	b, _ := ioutil.ReadAll(xmlFile)
+
+	var q Query
+	xml.Unmarshal(b, &q)
 }
