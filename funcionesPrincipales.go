@@ -126,11 +126,11 @@ func BuscarCancionPorArtista(artista string) []Cancion {
 	return busqueda
 }
 
-func BuscarCancionPorNombre(nombre string) []Cancion {
-	var busqueda = []Cancion{}
+func BuscarCancionPorId(id int) Cancion {
+	var busqueda Cancion
 	for _, cancion := range Canciones {
-		if strings.Contains(strings.ToLower(cancion.Nombre), strings.ToLower(nombre)) {
-			busqueda = append(busqueda, cancion)
+		if cancion.Id == id {
+			busqueda = cancion
 		}
 	}
 	return busqueda
@@ -144,6 +144,7 @@ func GenerarCancion() Cancion {
 	var duracion int
 	fmt.Print("Duración: ")
 	fmt.Scan(&duracion)
+	BusquedaDuplicadoCancion(nombre,artista,genero)
 	writeFileCanciones(Canciones, "files/canciones.txt")
 	return Cancion{
 		len(Canciones) + 1,
@@ -189,4 +190,22 @@ func EliminarCancion(id int) {
 func EliminarCancionDeLista(idListaCancion int) {
 	ListasCanciones = append(ListasCanciones[:idListaCancion], ListasCanciones[idListaCancion+1:]...)
 	writeFileListaCancion(ListasCanciones, "files/listasCanciones.txt")
+}
+
+func BusquedaDuplicadoCancion(nombre string, artista string, genero string) bool{
+	for _, cancion := range Canciones {
+		if (strings.Contains(strings.ToLower(cancion.Nombre), strings.ToLower(nombre)) && strings.Contains(strings.ToLower(cancion.Artista), strings.ToLower(artista)) && strings.Contains(strings.ToLower(cancion.Genero), strings.ToLower(genero))) {
+			return false
+		}
+	}
+	return true
+}
+
+func BusquedaDuplicadoLista(nombre string) bool{
+	for _, lista := range Listas {
+		if (strings.Contains(strings.ToLower(lista.Nombre), strings.ToLower(nombre))) {
+			return false
+		}
+	}
+	return true
 }

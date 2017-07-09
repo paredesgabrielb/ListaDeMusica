@@ -52,7 +52,7 @@ func GetListaCancionesByListaId(idLista int) []int {
 
 func GetCancionEnLista(idLista int, idCancion int) int {
 	for i := 0; i < len(ListasCanciones); i++ {
-		if ListasCanciones[i].IdLista == idLista && ListasCanciones[i].IdCancion == idCancion {
+		if (ListasCanciones[i].IdLista == idLista && ListasCanciones[i].IdCancion == idCancion) {
 			return i
 		}
 	}
@@ -64,7 +64,7 @@ func ImprimirCancionesByLista(id int) {
 	if len(idCanciones) == 0 {
 		fmt.Println("\nNo se encontraron canciones.")
 	} else {
-		for _, index := range GetListaCancionesByListaId(id) {
+		for _, index := range idCanciones {
 			fmt.Printf("\t" + strconv.Itoa(Canciones[index].Id) + "- " + Canciones[index].Nombre + ". By: " + Canciones[index].Artista + "\n")
 		}
 	}
@@ -120,7 +120,6 @@ func VolverAlMenuListas() {
 	ImprimirMenuDeListas()
 	MenuListas()
 }
-
 
 func VolverAlMenuExportar() {
 	VolverAlMenu()
@@ -184,8 +183,13 @@ func MenuListas() {
 		break
 	case 2:
 		fmt.Println("\nDigite los detalles de la lista:")
-		AnadirLista(GenerarLista())
-		fmt.Println("\nLista creada satisfactoriamente!")
+		var ListaAnadir = GenerarLista()
+		if(!BusquedaDuplicadoLista(ListaAnadir.Nombre)){
+			fmt.Printf("La Lista ya existe")
+		}else{
+			AnadirLista(GenerarLista())
+			fmt.Println("\nLista creada satisfactoriamente!")
+		}
 		VolverAlMenuListas()
 		break
 	case 3:
@@ -209,11 +213,16 @@ func MenuListas() {
 		ImprimirListas(Listas)
 		fmt.Print("\nDigite el ID de la lista: ")
 		fmt.Scan(&idLista)
-		ImprimirCancionesByLista(idLista - 1)
+		ImprimirCancionesByLista(idLista)
 		fmt.Print("\nDigite el ID de la cancion a eliminar: ")
 		fmt.Scan(&idCancion)
 		if VerificarIdCancionesEnLista(idLista, idCancion) {
-			EliminarCancionDeLista(GetCancionEnLista(idLista-1, idCancion-1))
+			if(GetCancionEnLista(idLista, BuscarCancionPorId(idCancion).Id) == -1){
+				fmt.Print("\nCancion no encontrada")
+				VolverAlMenuListas()
+			}else {
+				EliminarCancionDeLista(GetCancionEnLista(idLista, BuscarCancionPorId(idCancion).Id))
+			}
 			fmt.Println("\nCancion eliminada satisfactoriamente!")
 		} else {
 			fmt.Print("\nEl ID especificado no existe.")
@@ -227,7 +236,7 @@ func MenuListas() {
 		fmt.Scan(&id)
 		if VerificarIdListas(id) {
 			ImprimirListas([]Listado{Listas[id-1]})
-			ImprimirCancionesByLista(id - 1)
+			ImprimirCancionesByLista(id)
 		} else {
 			fmt.Print("\nEl ID especificado no existe.")
 		}
@@ -266,8 +275,13 @@ func MenuCanciones() {
 		break
 	case 2:
 		fmt.Println("\nDigite los detalles de la cancion:")
-		AnadirCancion(GenerarCancion())
-		fmt.Println("\nCancion añadida satisfactoriamente!")
+		var CancionAgregar = GenerarCancion()
+		if(!BusquedaDuplicadoCancion(CancionAgregar.Nombre,CancionAgregar.Artista,CancionAgregar.Genero)){
+			fmt.Printf("La Cancion ya existe")
+		}else{
+			AnadirCancion(CancionAgregar)
+			fmt.Println("\nCancion añadida satisfactoriamente!")
+		}
 		VolverAlMenuCanciones()
 		break
 	case 3:
@@ -329,14 +343,13 @@ func MenuCanciones() {
 	}
 }
 
-
 func MenuExportar() {
 	var opcion int
 
 	fmt.Scan(&opcion)
 
 	switch opcion {
-	case 1: // PDF 
+	case 1: // PDF
 		//TODO
 		exportToPdf()
 		VolverAlMenuExportar()
@@ -357,8 +370,8 @@ func MenuExportar() {
 		VolverAlMenuExportar()
 		break
 	case 5: // XML
-		//TODO
-		//exportToXml()
+		exportToXML(Canciones, Listas)
+		fmt.Println("\nSe ha exportado los datos!")
 		VolverAlMenuExportar()
 		break
 	case 6: // Volver al menu principal
@@ -377,11 +390,18 @@ func MenuImportar() {
 	switch opcion {
 	case 1: // JSON
 		//TODO
-		importToJson()
+		fmt.Print("\nIngrese el nombre del archivo sin su extension: ")
+		reader := bufio.NewReader(os.Stdin)
+		archivo := GetInput("", *reader)
+		importToJson(archivo)
 		VolverAlMenuImportar()
 		break
 	case 2: //XML
-		//TODO
+		fmt.Print("\nIngrese el nombre del archivo sin su extension: ")
+		reader := bufio.NewReader(os.Stdin)
+		archivo := GetInput("", *reader)
+		importFromXML(archivo)
+		fmt.Println("\nSe ha importado los datos!")
 		VolverAlMenuImportar()
 		break
 	case 3: // Volver al Menu principal

@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"encoding/json"
 	"strings"
+	"os"
+	"io/ioutil"
+	"encoding/xml"
 )
 
 func BusquedaCancion(nombre string, artista string, genero string) Cancion{
@@ -18,26 +21,8 @@ func BusquedaCancion(nombre string, artista string, genero string) Cancion{
 	return busqueda
 }
 
-func BusquedaDuplicadoCancion(nombre string, artista string, genero string) bool{
-	for _, cancion := range Canciones {
-		if (strings.Contains(strings.ToLower(cancion.Nombre), strings.ToLower(nombre)) && strings.Contains(strings.ToLower(cancion.Artista), strings.ToLower(artista)) && strings.Contains(strings.ToLower(cancion.Genero), strings.ToLower(genero))) {
-			return false
-		}
-	}
-	return true
-}
-
-func BusquedaDuplicadoLista(nombre string) bool{
-	for _, lista := range Listas {
-		if (strings.Contains(strings.ToLower(lista.Nombre), strings.ToLower(nombre))) {
-			return false
-		}
-	}
-	return true
-}
-
-func importToJson(){
-	cancionesJson, _ := readFileLines("./exportedFiles/listacanciones.json")
+func importToJson(path string){
+	cancionesJson, _ := readFileLines("./exportedFiles/"+path+".json")
 	var cancionData JsonHandler
 	var cancionesImportedJson []Cancion
 	b := []byte(cancionesJson[0])
@@ -91,8 +76,8 @@ func importToJson(){
 	/*cancionesJson, _ := readFileLines("./exportedFiles/Canciones.json")
 	var cancionData []Cancion
 	b := []byte(cancionesJson[0])
-	json.Unmarshal(b,&cancionData)
-	for _, cancion := range cancionData{
+	json.Unmarshal(b, &cancionData)
+	for _, cancion := range cancionData {
 		Canciones = append(Canciones, Cancion{
 			cancion.Id,
 			cancion.Nombre,
@@ -119,4 +104,30 @@ func importToJson(){
 	writeFileListas(Listas, "files/listas.txt")
 	writeFileListaCancion(ListasCanciones, "files/listasCanciones.txt")
 	fmt.Printf("Import exitoso.")
+}
+
+func importFromXML(path string) {
+	xmlFile, err := os.Open("exportedFiles/"+ path + ".xml")
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		return
+	}
+	defer xmlFile.Close()
+	b, _ := ioutil.ReadAll(xmlFile)
+	var q QueryXml
+	xml.Unmarshal(b, &q)
+	for _, cancion := range q.Canciones {
+		Canciones = append(Canciones, Cancion{
+			cancion.Id,
+			cancion.Nombre,
+			cancion.Artista,
+			cancion.Duracion,
+			cancion.Genero})
+	}
+	for _, lista := range q.Listados {
+		Listas = append(Listas, Listado{
+			lista.Id,
+			lista.Nombre,
+			lista.Descripcion})
+	}
 }

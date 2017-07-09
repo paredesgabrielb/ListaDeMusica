@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab4ed1f9-9b2e-48eb-a141-af1b10c80e5d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/exportedFiles/ListaDeMusica.xlsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/exportedFiles/Listas.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/times.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.exe" afterPath="$PROJECT_DIR$/main.exe" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/entidades.go" afterPath="$PROJECT_DIR$/entidades.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exportFiles.go" afterPath="$PROJECT_DIR$/exportFiles.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/files/canciones.txt" afterPath="$PROJECT_DIR$/files/canciones.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/files/listas.txt" afterPath="$PROJECT_DIR$/files/listas.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/files/listasCanciones.txt" afterPath="$PROJECT_DIR$/files/listasCanciones.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/funcionesPrincipales.go" afterPath="$PROJECT_DIR$/funcionesPrincipales.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/helpers.go" afterPath="$PROJECT_DIR$/helpers.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/importFiles.go" afterPath="$PROJECT_DIR$/importFiles.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,21 +30,31 @@
       <file leaf-file-name="entidades.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/entidades.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="17" column="26" lean-forward="false" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+            <state relative-caret-position="334">
+              <caret line="37" column="34" lean-forward="false" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="exportFiles.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="exportFiles.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/exportFiles.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="124" column="67" lean-forward="false" selection-start-line="124" selection-start-column="67" selection-end-line="124" selection-end-column="67" />
+            <state relative-caret-position="1445">
+              <caret line="85" column="26" lean-forward="false" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
               <folding>
-                <element signature="e#28#145#0" expanded="true" />
+                <element signature="e#29#152#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listacanciones.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/exportedFiles/listacanciones.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -39,10 +62,10 @@
       <file leaf-file-name="importFiles.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/importFiles.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="90" column="8" lean-forward="false" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
+            <state relative-caret-position="153">
+              <caret line="24" column="72" lean-forward="false" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
               <folding>
-                <element signature="e#14#70#0" expanded="true" />
+                <element signature="e#14#105#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,7 +74,7 @@
       <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
+            <state relative-caret-position="238">
               <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
@@ -61,8 +84,8 @@
       <file leaf-file-name="funcionesPrincipales.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/funcionesPrincipales.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+            <state relative-caret-position="545">
+              <caret line="210" column="1" lean-forward="false" selection-start-line="210" selection-start-column="1" selection-end-line="210" selection-end-column="1" />
               <folding>
                 <element signature="e#14#68#0" expanded="true" />
               </folding>
@@ -73,8 +96,8 @@
       <file leaf-file-name="helpers.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/helpers.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="50" column="1" lean-forward="false" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -91,27 +114,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>EliminarCancionDeLista</find>
-      <find>GetCancionEnLista</find>
-      <find>id</find>
-      <find>Canciones</find>
-      <find>Limpiar</find>
-      <find>save</find>
-      <find>MenuListas</find>
-      <find>Ana</find>
-      <find>Cancion</find>
-      <find>VolverAlMenu</find>
-      <find>menuDeExport</find>
-      <find>Menu</find>
-      <find>MenuExport</find>
       <find>MenuLista</find>
       <find>Busqueda</find>
-      <find>BuscarCancionPor</find>
       <find>BuscarCancio</find>
       <find>Buscar</find>
       <find>ImprimirCancion</find>
       <find>imprimir</find>
+      <find>export</find>
+      <find>exportToXml</find>
+      <find>exportToXmlexportToXML</find>
+      <find>Pdf</find>
+      <find>csv</find>
+      <find>hola</find>
+      <find>lista</find>
+      <find>GetLista</find>
+      <find>GetListaCAncionesByListaId</find>
+      <find>VerificarIdCancionesEnLista</find>
+      <find>BuscarCancion</find>
+      <find>GetCancionEnLista</find>
+      <find>BuscarCancionPor</find>
+      <find>MenuListas</find>
       <find>GetListaCancionesByListaId</find>
+      <find>imprimirCanciones</find>
+      <find>ImprimirCancionesByLista</find>
+      <find>AnadirCancion</find>
+      <find>Anadir</find>
+      <find>GenerarCAncion</find>
+      <find>GenerarCancion</find>
+      <find>GenerarLista</find>
+      <find>duplicad</find>
+      <find>MenuImportar</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -130,15 +162,15 @@
         <option value="$PROJECT_DIR$/xlsx/compatibility_test.go" />
         <option value="$PROJECT_DIR$/metodosPantalla.go" />
         <option value="$USER_HOME$/Desktop/listacanciones.json" />
-        <option value="$PROJECT_DIR$/funcionesPrincipales.go" />
-        <option value="$PROJECT_DIR$/exportedFiles/listacanciones.json" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/exportedFiles/Canciones.json" />
-        <option value="$PROJECT_DIR$/entidades.go" />
-        <option value="$PROJECT_DIR$/helpers.go" />
         <option value="$PROJECT_DIR$/export/cancionestest.json" />
-        <option value="$PROJECT_DIR$/importFiles.go" />
         <option value="$PROJECT_DIR$/exportFiles.go" />
+        <option value="$PROJECT_DIR$/entidades.go" />
+        <option value="$PROJECT_DIR$/funcionesPrincipales.go" />
+        <option value="$PROJECT_DIR$/importFiles.go" />
+        <option value="$PROJECT_DIR$/helpers.go" />
+        <option value="$PROJECT_DIR$/exportedFiles/listacanciones.json" />
       </list>
     </option>
   </component>
@@ -188,8 +220,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -202,8 +232,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ListaDeMusica" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ListaDeMusica" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="exportedFiles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -475,8 +521,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -486,8 +532,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -502,7 +548,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -511,13 +557,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fileHandler.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/funcionesPrincipales.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1309">
@@ -739,24 +778,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/metodosPantalla.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/exportedFiles/Listas.json" />
     <entry file="file://$PROJECT_DIR$/exportedFiles/ListasCanciones.json" />
     <entry file="file://$USER_HOME$/Desktop/listacanciones.json" />
-    <entry file="file://$USER_HOME$/Desktop/ListaCanciones.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/exportedFiles/ListaCanciones.xml" />
+    <entry file="file://$USER_HOME$/Desktop/ListaCanciones.xml" />
     <entry file="file://$PROJECT_DIR$/fileHandler.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -773,34 +798,24 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/exportedFiles/Canciones.json" />
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funcionesPrincipales.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding>
-            <element signature="e#14#68#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/helpers.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="50" column="1" lean-forward="false" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/export/cancionestest.json" />
-    <entry file="file://$PROJECT_DIR$/exportedFiles/listacanciones.json">
+    <entry file="file://$PROJECT_DIR$/metodosPantalla.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exportedFiles/export.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exportedFiles/ListaCanciones.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -810,29 +825,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/entidades.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="17" column="26" lean-forward="false" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        <state relative-caret-position="334">
+          <caret line="37" column="34" lean-forward="false" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funcionesPrincipales.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="210" column="1" lean-forward="false" selection-start-line="210" selection-start-column="1" selection-end-line="210" selection-end-column="1" />
+          <folding>
+            <element signature="e#14#68#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/importFiles.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="90" column="8" lean-forward="false" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
+        <state relative-caret-position="153">
+          <caret line="24" column="72" lean-forward="false" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
           <folding>
-            <element signature="e#14#70#0" expanded="true" />
+            <element signature="e#14#105#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helpers.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/exportFiles.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="124" column="67" lean-forward="false" selection-start-line="124" selection-start-column="67" selection-end-line="124" selection-end-column="67" />
+        <state relative-caret-position="1445">
+          <caret line="85" column="26" lean-forward="false" selection-start-line="85" selection-start-column="26" selection-end-line="85" selection-end-column="26" />
           <folding>
-            <element signature="e#28#145#0" expanded="true" />
+            <element signature="e#29#152#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exportedFiles/listacanciones.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

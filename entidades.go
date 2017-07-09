@@ -19,10 +19,9 @@ type ListaCancion struct {
 	IdLista   int
 	IdCancion int
 }
-
 //Json Entity Handler
 type JsonHandler struct {
-	Cancion []struct {
+	Cancion        []struct {
 		Artista  string `json:"artista"`
 		Duracion string `json:"duracion"`
 		Genero   string `json:"genero"`
@@ -35,6 +34,12 @@ type JsonHandler struct {
 		Nombre    string `json:"nombre"`
 	}`json:"listacanciones"`
 }
+type QueryXml struct {
+	Canciones []Cancion `xml:Cancion`
+	Listados []Listado `xml:Listacanciones`
+}
+
+
 
 //Slice de canciones
 var Canciones = []Cancion{}

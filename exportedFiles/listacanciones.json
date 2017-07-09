@@ -1,0 +1,1 @@
+{"canciones":[{"artista":"AAAA","duracion":"0","genero":"genero","id":1,"nombre":"AAAA"},{"artista":"artista2","duracion":"0","genero":"genero2","id":2,"nombre":"nombre2"},{"artista":"asd","duracion":"0","genero":"asd","id":7,"nombre":"asd"}],"listacanciones":[{"canciones":[1,2,3],"id":1,"nombre":"pprueba"},{"canciones":[0,2],"id":2,"nombre":"lista1"}]}

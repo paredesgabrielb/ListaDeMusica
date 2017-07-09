@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libreriacanciones>
+<canciones>
+	<cancion>
+		<id>1</id>
+		<nombre>Dariel</nombre>
+		<artista>Dariel</artista>
+		<duracion>0</duracion>
+		<genero>genero</genero>
+	</cancion>
+	<cancion>
+		<id>2</id>
+		<nombre>nombre2</nombre>
+		<artista>artista2</artista>
+		<duracion>0</duracion>
+		<genero>genero2</genero>
+	</cancion>
+	<cancion>
+		<id>3</id>
+		<nombre>nombre3</nombre>
+		<artista>artista3</artista>
+		<duracion>0</duracion>
+		<genero>genero3</genero>
+	</cancion>
+	<cancion>
+		<id>4</id>
+		<nombre>nombre4</nombre>
+		<artista>artista4</artista>
+		<duracion>0</duracion>
+		<genero>genero4</genero>
+	</cancion>
+	<cancion>
+		<id>5</id>
+		<nombre>Tu amor</nombre>
+		<artista>Romeo Sta</artista>
+		<duracion>12</duracion>
+		<genero>rock</genero>
+	</cancion>
+	<cancion>
+		<id>6</id>
+		<nombre>teste</nombre>
+		<artista>tested</artista>
+		<duracion>0</duracion>
+		<genero>a</genero>
+	</cancion>
+	<cancion>
+		<id>7</id>
+		<nombre>asd</nombre>
+		<artista>asd</artista>
+		<duracion>0</duracion>
+		<genero>asd</genero>
+	</cancion>
+</canciones>
+
+<listacanciones>
+
+	<id>1</id>
+	<nombre>lista</nombre>
+	<descripcion>descripcion</descripcion>
+	<canciones>
+		<id>2</id>
+	</canciones>
+</listacanciones>
+
+	<id>2</id>
+	<nombre>lista1</nombre>
+	<descripcion>descripcion1</descripcion>
+	<canciones>
+		<id>1</id>
+		<id>3</id>
+	</canciones>
+</listacanciones>
+
+	<id>3</id>
+	<nombre>algo</nombre>
+	<descripcion>algo2</descripcion>
+	<canciones>
+		<id>4</id>
+	</canciones>
+</listacanciones>
+
+	<id>4</id>
+	<nombre>Salsa</nombre>
+	<descripcion>son salsa</descripcion>
+	<canciones>
+		<id>5</id>
+	</canciones>
+</listacanciones>
+
+	<id>5</id>
+	<nombre>sergio</nombre>
+	<descripcion>ergio</descripcion>
+	<canciones>
+	</canciones>
+</listacanciones>
+
+	<id>6</id>
+	<nombre>tested</nombre>
+	<descripcion>tested tested tested tested tested tested tested</descripcion>
+	<canciones>
+	</canciones>
+</listacanciones>
+</libreriacanciones>
+

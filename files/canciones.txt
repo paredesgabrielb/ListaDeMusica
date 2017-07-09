@@ -3,6 +3,6 @@
 3|nombre3|artista3|0|genero3
 4|nombre4|artista4|0|genero4
 5|Tu amor|Romeo Sta|12|rock
-6|a|a|0|a
+6|teste|tested|0|a
 7|asd|asd|0|asd
-8|Open Heaven|Hillsong United|6|alt rock
+8|AAAA|AAAA|0|genero

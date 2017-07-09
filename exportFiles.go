@@ -1,19 +1,21 @@
 package main
+
 //noInspection
-import(
+import (
+	"encoding/json"
 	"fmt"
 	"os"
-	"github.com/Luxurioust/excelize"
 	"strconv"
-	"encoding/json"
-  	"github.com/signintech/gopdf"
+	"log"
+	"github.com/Luxurioust/excelize"
+	"github.com/signintech/gopdf"
 )
 
 //funciones exportar
 
 //Xlsx tiene un bug en el que si cambias el nombre de la hoja antes de escribir en ella por alguna razon no escribe en la hoja.
 //El fix mas rapido es cambiar el nombre de la hoja luego de escribir en ella
-func exportToXlsx(){
+func exportToXlsx() {
 	var row = ""
 	xlsx := excelize.NewFile()
 
@@ -26,8 +28,8 @@ func exportToXlsx(){
 	xlsx.SetCellValue("Sheet1", "C1", "Artista")
 	xlsx.SetCellValue("Sheet1", "D1", "Duracion")
 	xlsx.SetCellValue("Sheet1", "E1", "Genero")
-	for i:=0; i < len(Canciones); i++ {
-		row = strconv.Itoa((i+2))
+	for i := 0; i < len(Canciones); i++ {
+		row = strconv.Itoa((i + 2))
 		xlsx.SetCellValue("Sheet1", "A"+row, Canciones[i].Id)
 		xlsx.SetCellValue("Sheet1", "B"+row, Canciones[i].Nombre)
 		xlsx.SetCellValue("Sheet1", "C"+row, Canciones[i].Artista)
@@ -39,12 +41,11 @@ func exportToXlsx(){
 	xlsx.SetCellValue("Sheet2", "B1", "Nombre")
 	xlsx.SetCellValue("Sheet1", "C1", "Artista")
 	for i := 0; i < len(Listas); i++ {
-		row = strconv.Itoa((i+2))
+		row = strconv.Itoa((i + 2))
 		xlsx.SetCellValue("Sheet2", "A"+row, Listas[i].Id)
 		xlsx.SetCellValue("Sheet2", "B"+row, Listas[i].Nombre)
 		xlsx.SetCellValue("Sheet2", "C"+row, Listas[i].Descripcion)
 	}
-
 
 	// Set a new Name to the Given Sheet
 	xlsx.SetSheetName("Sheet1", "Canciones")
@@ -59,9 +60,8 @@ func exportToXlsx(){
 	fmt.Printf("Archivo exportado")
 }
 
-
 func exportToCsv(canciones []Cancion, listas []Listado) {
-	file, err := os.Create("export/export.csv")
+	file, err := os.Create("exportedFiles/export.csv")
 	check(err)
 	defer file.Close()
 	for _, cancion := range canciones {
@@ -77,7 +77,6 @@ func exportToCsv(canciones []Cancion, listas []Listado) {
 	}
 	fmt.Printf("Archivo exportado")
 }
-
 
 func exportToJson(){
 	var jExport JsonHandler
@@ -106,7 +105,9 @@ func exportToJson(){
 			cancionesInLista,
 			lista.Id,
 			lista.Nombre})
+		fmt.Print(cancionesInLista)
 	}
+
 	e, _ := json.Marshal(jExport)
 	fileExport, _ := os.Create("./exportedFiles/listacanciones.json")
 	defer fileExport.Close()
@@ -126,33 +127,69 @@ func exportToJson(){
 	fmt.Printf("Archivo exportado")
 }
 
-func exportToPdf(){
+func exportToXML(canciones []Cancion, listas []Listado) {
+	file, err := os.Create("exportedFiles/export.xml")
+	if err != nil {
+		panic(err)
+	} // panic if error
+	defer file.Close()
+
+	fmt.Fprintf(file, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n")
+	fmt.Fprintf(file, "<libreriacanciones>\r\n")
+
+	fmt.Fprintf(file, "<canciones>\r\n")
+	for _, cancion := range canciones {
+		id := strconv.Itoa(cancion.Id)
+		duracion := strconv.Itoa(cancion.Duracion)
+		line := "\t<cancion>\r\n\t\t<id>" + id + "</id>\r\n\t\t<nombre>" + cancion.Nombre + "</nombre>\r\n\t\t<artista>" + cancion.Artista + "</artista>\r\n\t\t<duracion>" + duracion + "</duracion>\r\n\t\t<genero>" + cancion.Genero + "</genero>\r\n\t</cancion>\r\n"
+		fmt.Fprintf(file, line)
+	}
+	fmt.Fprintf(file, "</canciones>\r\n\n")
+	fmt.Fprintf(file, "<listacanciones>\r\n")
+	for _, lista := range listas {
+		id := strconv.Itoa(lista.Id)
+		line := "\r\n\t<id>" + id + "</id>\r\n\t<nombre>" + lista.Nombre + "</nombre>\r\n\t<descripcion>" + lista.Descripcion + "</descripcion>\r\n"
+		fmt.Fprintf(file, line)
+		fmt.Fprintf(file, "\t<canciones>\r\n")
+
+		for _, index := range GetListaCancionesByListaId(lista.Id) {
+			id := strconv.Itoa(Canciones[index].Id)
+			line := "\t\t<id>" + id + "</id>\r\n"
+			fmt.Fprintf(file, line)
+		}
+		fmt.Fprintf(file, "\t</canciones>\r\n")
+
+		fmt.Fprintf(file, "</listacanciones>\r\n")
+	}
+	fmt.Fprintf(file, "</libreriacanciones>\r\n\n")
+}
+
+func exportToPdf() {
 	pdf := gopdf.GoPdf{}
-	pdf.Start(gopdf.Config{ PageSize: gopdf.Rect{W: 595.28, H: 841.89}}) //595.28, 841.89 = A4
+	pdf.Start(gopdf.Config{PageSize: gopdf.Rect{W: 595.28, H: 841.89}}) //595.28, 841.89 = A4
 	pdf.AddPage()
-	/*err := pdf.AddTTFFont("HDZB_5", "../ttf/wts11.ttf")
+	err := pdf.AddTTFFont("time", "./res/times.ttf")
 	if err != nil {
 		log.Print(err.Error())
 		return
-	}*/
+	}
 
-	/*err = pdf.SetFont("HDZB_5", "", 14)
+	err = pdf.SetFont("time", "", 14)
 	if err != nil {
 		log.Print(err.Error())
 		return
-	}*/
+	}
 
-	for i:=0; i < len(Canciones); i++ {
-		pdf.Cell(nil, Canciones[i].Nombre)//Canciones[i].Id + "|" +Canciones[i].Nombre+ "|" + Canciones[i].Artista+"|" + Canciones[i].Duracion + "|" + Canciones[i].Genero)
-	    pdf.Br(20)
+	for i := 0; i < len(Canciones); i++ {
+		pdf.Cell(nil, Canciones[i].Nombre) //Canciones[i].Id + "|" +Canciones[i].Nombre+ "|" + Canciones[i].Artista+"|" + Canciones[i].Duracion + "|" + Canciones[i].Genero)
+		pdf.Br(20)
 	}
 
 	for i := 0; i < len(Listas); i++ {
-		pdf.Cell(nil, Listas[i].Nombre)//Listas[i].Id + "|" + Listas[i].Nombre + "|" +Listas[i].Descripcion)
+		pdf.Cell(nil, Listas[i].Nombre) //Listas[i].Id + "|" + Listas[i].Nombre + "|" +Listas[i].Descripcion)
 		pdf.Br(20)
 	}
-	pdf.Cell(nil, " HOla mundo ")
-	pdf.WritePdf("hello.pdf")
+	pdf.WritePdf("exportedFiles/Listas.pdf")
 	fmt.Printf("Archivo exportado")
-	PauseConsole()
 }
+
